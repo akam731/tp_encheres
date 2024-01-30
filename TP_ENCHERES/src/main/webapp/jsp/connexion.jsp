@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Ecnhères | Connexion</title>
     <link href="../css/connexion.css" rel="stylesheet">
+    <link href="css/connexion.css" rel="stylesheet">
 </head>
 <body>
-    <h2>ENI - Enchères</h2>
+    <h2><a href="acceuil"> ENI - Enchères </a></h2>
     <form>
         <h1>Connexion</h1>
         <br>
@@ -33,7 +34,7 @@
         <br>
         <br>
         <br>
-        <input type="submit" name="inscription" id="inscription" value="Inscription">
+    <a class="button" href="inscription" id="inscription">Inscription</a>
     </form>
     <div id="erreur"
     <%	String erreur = null;

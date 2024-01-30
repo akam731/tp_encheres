@@ -11,7 +11,12 @@
         h2{
           font-weight: normal;
           margin: 50px 0 0 50px;
+		text-decoration: none;
         }
+        h2 a{
+			text-decoration: none;
+			color: black;
+		}
 
         form {
             background-color: #fff;
@@ -73,12 +78,16 @@
         }
 
         #inscription{
-          display: block;
+          display: inline-block;
+          text-align: center;
+          color: #fff;
           background-color: #1D90F0;
           border: 1px solid #1D90F0;
           width: 350px;
-          height: 40px;
+          height: 35px;
           margin: auto;
+          text-decoration: none;
+          padding: 15px 0 0 0;
         }
 
         .conec_flex{

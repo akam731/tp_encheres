@@ -11,12 +11,12 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/deconnexion")
 public class deconnexion extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate(); // Efface toutes les informations de session
-        response.sendRedirect("home.jsp"); // Redirige vers la page d'accueil
+        response.sendRedirect("acceuil"); // Redirige vers la page d'accueil
     }
-	
-
 }

@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Ecnhères | Inscription</title>
+    <link href="../css/inscription.css" rel="stylesheet">
     <link href="css/inscription.css" rel="stylesheet">
 </head>
 <body>
-    <h2>ENI - Enchères</h2>
+    <h2><a href="acceuil"> ENI - Enchères </a></h2>
     <form method="post" action="/TP_ENCHERES/inscription">
         <h1>Mon Profil</h1>
         <br>
