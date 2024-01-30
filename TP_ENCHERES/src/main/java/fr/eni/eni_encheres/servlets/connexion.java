@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/connexion")
 public class connexion extends HttpServlet {
@@ -19,7 +20,13 @@ public class connexion extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+		HttpSession session = request.getSession();
+		
 
+		String pseudo = (String) request.getParameter("pseudo"); 
+		String motDePasse = (String) request.getParameter("motDePasse");
+		String souvenir = (String) request.getParameter("souvenir");
+		
+	}
+	
 }

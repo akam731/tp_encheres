@@ -102,3 +102,22 @@
         input[type=checkbox]{
           width: 20px;
         }@charset "UTF-8";
+        
+        
+        
+        #erreur {
+			display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: red;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        
+        
+        
+        
+        
+        

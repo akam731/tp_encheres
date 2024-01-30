@@ -35,5 +35,17 @@
         <br>
         <input type="submit" name="inscription" id="inscription" value="Inscription">
     </form>
+    <div id="erreur"
+    <%	String erreur = null;
+    	String style = null;
+		if(request.getAttribute("errorConnexion") != null){
+			 erreur = (String)request.getAttribute("errorConnexion");
+			 style = "display: block;";
+			 request.setAttribute("errorConnexion",null);
+		}
+	%> style=" <%= style %> "
+    >
+        <p><%= erreur %></p>
+    </div>
 </body>
 </html>
