@@ -10,7 +10,7 @@
 </head>
 <body>
     <h2>ENI - Enchères</h2>
-    <form>
+    <form method="get" action="/TP_ENCHERES/inscription">
         <h1>Mon Profil</h1>
         <br>
         <br>
@@ -46,7 +46,7 @@
 
 
             <label for="motDePasse">Confirmation :</label>
-            <input type="password" id="motDePasse" name="motDePasse" required><br>
+            <input type="password" id="motDePasse" name="motDePasse2" required><br>
           </div>
         </div> 
         <br>

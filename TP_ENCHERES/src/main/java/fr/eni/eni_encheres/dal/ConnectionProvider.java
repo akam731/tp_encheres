@@ -9,9 +9,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConnectionProvider {
-	
+
 	private static DataSource datasource;
-	
 	
 	static
 	{
@@ -29,6 +28,5 @@ public class ConnectionProvider {
 	public static Connection getConnection() throws SQLException
 	{
 		return ConnectionProvider.datasource.getConnection();
-	}
-	
+	}	
 }
