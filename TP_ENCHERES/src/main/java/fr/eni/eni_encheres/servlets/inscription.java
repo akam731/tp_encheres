@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/connexion")
-public class connexion extends HttpServlet {
+/**
+ * Servlet implementation class inscription
+ */
+@WebServlet("/inscription")
+public class inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/connexion.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
 		rd.forward(request, response);
 	}
 
