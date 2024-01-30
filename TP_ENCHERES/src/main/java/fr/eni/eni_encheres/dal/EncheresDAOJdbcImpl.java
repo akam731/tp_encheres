@@ -13,7 +13,26 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 	private final String AJOUT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private final String IS_EXISTE = "SELECT COUNT(*) FROM utilisateurs WHERE ";
 	private final String SELECT_USER_BY = "SELECT * FROM utilisateurs WHERE ";
+	private final String DELETE_USER_BY_ID = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
+	public void deleteUser(int userId) throws BusinessException{
+		
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			try(PreparedStatement pstmt = cnx.prepareStatement(DELETE_USER_BY_ID)){
+				pstmt.setInt(1, userId);
+				pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	public Utilisateur getUserBy(String colonne, String value) throws BusinessException{
 		
 		String sql = SELECT_USER_BY + colonne + " = ?";

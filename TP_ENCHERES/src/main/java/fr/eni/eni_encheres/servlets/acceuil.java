@@ -1,6 +1,7 @@
 package fr.eni.eni_encheres.servlets;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,12 +33,11 @@ public class acceuil extends HttpServlet {
 			
 			if(cookies != null) {
 				for(Cookie cookie : cookies) {
-					System.out.println(cookie.getName());
 					if("User".equals(cookie.getName())) {
-						userPseudo = cookie.getValue();
+						userPseudo = URLDecoder.decode(cookie.getValue(), "UTF-8");
 					}
 					if("PassWord".equals(cookie.getName())) {
-						userMdp = cookie.getValue();
+						userMdp = URLDecoder.decode(cookie.getValue(), "UTF-8");
 					}
 				}
 			}
@@ -60,6 +60,7 @@ public class acceuil extends HttpServlet {
 						session.setAttribute("rue", utilisateur.getRue());
 						session.setAttribute("codePostal", utilisateur.getCodePostal());
 						session.setAttribute("ville", utilisateur.getVille());
+						session.setAttribute("mdp", utilisateur.getMotDePasse());
 						
 						response.sendRedirect("acceuil");
 						

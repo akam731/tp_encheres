@@ -21,7 +21,7 @@
     		%>
     		<a href="">Enchères</a>
     		<a href="">Vendre un article</a>
-    		<a href="">Mon profil</a>
+    		<a href="utilisateur?username=<%= session.getAttribute("pseudo") %>">Mon profil</a>
     		<a href="deconnexion">Déconnexion</a>
     		
     		<% 

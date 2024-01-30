@@ -1,6 +1,7 @@
 package fr.eni.eni_encheres.servlets;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +40,10 @@ public class inscription extends HttpServlet {
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
 				if("User".equals(cookie.getName())) {
-					userPseudo = cookie.getValue();
+					userPseudo = URLDecoder.decode(cookie.getValue(), "UTF-8");
 				}
 				if("PassWord".equals(cookie.getName())) {
-					userMdp = cookie.getValue();
+					userMdp = URLDecoder.decode(cookie.getValue(), "UTF-8");
 				}
 			}
 		}
@@ -65,6 +66,7 @@ public class inscription extends HttpServlet {
 					session.setAttribute("rue", utilisateur.getRue());
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
+					session.setAttribute("mdp", utilisateur.getMotDePasse());
 					
 					response.sendRedirect("acceuil");
 					
@@ -139,6 +141,7 @@ public class inscription extends HttpServlet {
 									session.setAttribute("rue", rue);
 									session.setAttribute("codePostal", codePostal);
 									session.setAttribute("ville", ville);
+									session.setAttribute("mdp", motDePasse);
 									
 									response.sendRedirect("acceuil");
 									

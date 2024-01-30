@@ -1,6 +1,8 @@
 package fr.eni.eni_encheres.servlets;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,10 +34,10 @@ public class connexion extends HttpServlet {
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
 				if("User".equals(cookie.getName())) {
-					userPseudo = cookie.getValue();
+					userPseudo = URLDecoder.decode(cookie.getValue(), "UTF-8");
 				}
 				if("PassWord".equals(cookie.getName())) {
-					userMdp = cookie.getValue();
+					userMdp = URLDecoder.decode(cookie.getValue(), "UTF-8");
 				}
 			}
 		}
@@ -58,6 +60,7 @@ public class connexion extends HttpServlet {
 					session.setAttribute("rue", utilisateur.getRue());
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
+					session.setAttribute("mdp", utilisateur.getMotDePasse());
 					
 					response.sendRedirect("acceuil");
 					
@@ -103,11 +106,12 @@ public class connexion extends HttpServlet {
 					session.setAttribute("rue", utilisateur.getRue());
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
+					session.setAttribute("mdp", utilisateur.getMotDePasse());
 					
 					
 			        if ("on".equals(souvenir)) {
-			        	Cookie userPseudo = new Cookie("User", pseudo);	
-			        	Cookie userMdp = new Cookie("PassWord", motDePasse);	
+			        	Cookie userPseudo = new Cookie("User", URLEncoder.encode(pseudo, "UTF-8"));	
+			        	Cookie userMdp = new Cookie("PassWord", URLEncoder.encode(motDePasse, "UTF-8"));	
 			        	
 			        	userPseudo.setMaxAge(365 * 24 * 60 * 60);
 			        	userMdp.setMaxAge(365 * 24 * 60 * 60);

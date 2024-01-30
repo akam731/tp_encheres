@@ -13,6 +13,20 @@ public class EniEnchereManager {
 		this.enchereDAO = DAOFactory.getEncheresDAO();
 	}
 	
+	public void deleteUserById(int id) throws BusinessException{
+
+		BusinessException businessException = new BusinessException();
+		
+		if(!businessException.hasErreurs()) {
+			
+			this.enchereDAO.deleteUser(id);
+			
+		}else {
+			throw businessException;
+		}
+		
+	}
+	
 	public Utilisateur getUserBy(String colonne, String value) throws BusinessException{
 		
 		BusinessException businessException = new BusinessException();
