@@ -11,7 +11,7 @@
 </head>
 <body>
     <h2><a href="acceuil"> ENI - Enchères </a></h2>
-    <form>
+    <form method="post" action="/TP_ENCHERES/connexion">
         <h1>Connexion</h1>
         <br>
         <br>

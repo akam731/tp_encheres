@@ -13,8 +13,23 @@ public class EniEnchereManager {
 		this.enchereDAO = DAOFactory.getEncheresDAO();
 	}
 	
-	public Boolean isColloneExiste(String collone, String value) throws BusinessException{
+	public Utilisateur getUserBy(String colonne, String value) throws BusinessException{
 		
+		BusinessException businessException = new BusinessException();
+		
+		Utilisateur utilisateur = null;
+		
+		if(!businessException.hasErreurs()) {
+			
+			utilisateur = this.enchereDAO.getUserBy(colonne, value);
+			
+		}else {
+			throw businessException;
+		}
+		return utilisateur;
+	}
+	
+	public Boolean isColloneExiste(String collone, String value) throws BusinessException{
 		return this.enchereDAO.isColloneExiste(collone, value);
 	}
 	

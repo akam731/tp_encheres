@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,9 +27,58 @@ public class inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-		rd.forward(request, response);
+		// Auto - Connexion par Cookies
+		Cookie[] cookies = request.getCookies();
+		
+		
+		String userPseudo = null;
+		String userMdp = null;
+		
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if("User".equals(cookie.getName())) {
+					userPseudo = cookie.getValue();
+				}
+				if("PassWord".equals(cookie.getName())) {
+					userMdp = cookie.getValue();
+				}
+			}
+		}
+		
+		if(userMdp != null && userPseudo != null) {
+			EniEnchereManager user = new EniEnchereManager();
+			try {
+				
+				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				
+				if(userMdp.equals(utilisateur.getMotDePasse())) {
+					
+					session.setAttribute("isConnected", true);
+					session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
+					session.setAttribute("pseudo", userPseudo);
+					session.setAttribute("nom", utilisateur.getNom());
+					session.setAttribute("prenom", utilisateur.getPrenom());
+					session.setAttribute("mail", utilisateur.getEmail());
+					session.setAttribute("tel", utilisateur.getTelephone());
+					session.setAttribute("rue", utilisateur.getRue());
+					session.setAttribute("codePostal", utilisateur.getCodePostal());
+					session.setAttribute("ville", utilisateur.getVille());
+					
+					response.sendRedirect("acceuil");
+					
+				}else {
+					RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+					rd.forward(request, response);
+				}
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

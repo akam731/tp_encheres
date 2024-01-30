@@ -12,6 +12,42 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 	
 	private final String AJOUT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private final String IS_EXISTE = "SELECT COUNT(*) FROM utilisateurs WHERE ";
+	private final String SELECT_USER_BY = "SELECT * FROM utilisateurs WHERE ";
+
+	public Utilisateur getUserBy(String colonne, String value) throws BusinessException{
+		
+		String sql = SELECT_USER_BY + colonne + " = ?";
+		
+		Utilisateur utilisateur = new Utilisateur();
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			try(PreparedStatement pstmt = cnx.prepareStatement(sql)){
+				pstmt.setString(1, value);
+				try(ResultSet rs = pstmt.executeQuery()){
+					if(rs.next()) {
+						utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+						utilisateur.setPseudo(rs.getString("pseudo"));
+						utilisateur.setNom(rs.getString("nom"));
+						utilisateur.setPrenom(rs.getString("prenom"));
+						utilisateur.setEmail(rs.getString("email"));
+						utilisateur.setTelephone(rs.getString("telephone"));
+						utilisateur.setRue(rs.getString("rue"));
+						utilisateur.setCodePostal(rs.getString("code_postal"));
+						utilisateur.setVille(rs.getString("ville"));
+						utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+						utilisateur.setCredit(rs.getInt("credit"));
+						utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+					}
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return utilisateur;
+	}
 	
 	public Boolean isColloneExiste(String collone, String value) throws BusinessException{
 		
@@ -61,7 +97,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
