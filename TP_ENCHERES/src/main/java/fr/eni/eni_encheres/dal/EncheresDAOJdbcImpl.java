@@ -1,8 +1,12 @@
 package fr.eni.eni_encheres.dal;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 import fr.eni.courses.dal.ConnectionProvider;
 import fr.eni.eni_encheres.BusinessException;
@@ -15,9 +19,8 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 	@Override	
 	public void setNewUser(Utilisateur utilisateur) throws BusinessException{
 
-		try(Connection cnx = ConnectionProvider.getConnection();){
+		try(Connection cnx = ConnectionProvider.getConnection(); PreparedStatement pstmt = cnx.prepareStatement(AJOUT_UTILISATEUR, PreparedStatement.RETURN_GENERATED_KEYS)){	
 			
-			PreparedStatement pstmt = cnx.prepareStatement(AJOUT_UTILISATEUR);
 			pstmt.setString(1, utilisateur.getPseudo());
 			pstmt.setString(2, utilisateur.getNom());
 			pstmt.setString(3, utilisateur.getPrenom());
@@ -31,6 +34,12 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			pstmt.setBoolean(11, utilisateur.isAdministrateur());
 			
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			if(rs.next()) {
+				utilisateur.setNoUtilisateur(rs.getInt(1));
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

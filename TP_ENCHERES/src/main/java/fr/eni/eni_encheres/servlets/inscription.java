@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.eni_encheres.dal.DAOFactory;
 import fr.eni.eni_encheres.BusinessException;
+import fr.eni.eni_encheres.bll.EniEnchereManager;
 import fr.eni.eni_encheres.bo.Utilisateur;
 import fr.eni.eni_encheres.dal.EncheresDAO;
 
@@ -61,13 +62,13 @@ public class inscription extends HttpServlet {
 		if(notNull) {
 			if(motDePasse.equals(motDePasse2)) {
 				
-				EncheresDAO dao = (EncheresDAO) DAOFactory.getEncheresDAO();
-				Utilisateur utilisateur = new Utilisateur(pseudo,nom,prenom,mail,tel,rue,codePostal,ville,motDePasse,0,false);
+				
+				EniEnchereManager utilisateur = new EniEnchereManager();
 				
 				try {
-					
-					dao.setNewUser(utilisateur);
+					Utilisateur user = utilisateur.setNewUser(pseudo,nom,prenom,mail,tel,rue,codePostal,ville,motDePasse);
 					session.setAttribute("isConnected", true);
+					session.setAttribute("noUtilisateur", user.getNoUtilisateur());
 					session.setAttribute("pseudo", pseudo);
 					session.setAttribute("nom", nom);
 					session.setAttribute("prenom", prenom);
