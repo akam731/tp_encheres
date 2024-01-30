@@ -18,6 +18,5 @@ public class deconnexion extends HttpServlet {
         response.sendRedirect("home.jsp"); // Redirige vers la page d'accueil
     }
 	
-	
 
 }
