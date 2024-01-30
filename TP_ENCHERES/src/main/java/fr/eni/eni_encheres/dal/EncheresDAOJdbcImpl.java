@@ -1,20 +1,39 @@
 package fr.eni.eni_encheres.dal;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
-
-import fr.eni.courses.dal.ConnectionProvider;
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.Utilisateur;
 
 public class EncheresDAOJdbcImpl implements EncheresDAO{
 	
 	private final String AJOUT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	private final String IS_EXISTE = "SELECT COUNT(*) FROM utilisateurs WHERE ";
+	
+	public Boolean isColloneExiste(String collone, String value) throws BusinessException{
+		
+		String sql = IS_EXISTE + collone + " = ?;";
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			try (PreparedStatement pstmt = cnx.prepareStatement(sql)){
+				pstmt.setString(1, value);
+				try(ResultSet rs = pstmt.executeQuery();){
+					if(rs.next()) {
+						return rs.getInt(1) > 0;
+					}
+				}
+			}
+														
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	
 	@Override	
 	public void setNewUser(Utilisateur utilisateur) throws BusinessException{
@@ -46,5 +65,4 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			e.printStackTrace();
 		}
 	}
-	
 }

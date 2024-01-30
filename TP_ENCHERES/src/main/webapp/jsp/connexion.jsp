@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Ecnhères | Connexion</title>
-    <link rel="stylesheet" href="css/connexion.css">
+    <link href="../css/connexion.css" rel="stylesheet">
 </head>
 <body>
     <h2>ENI - Enchères</h2>

@@ -66,36 +66,55 @@ public class inscription extends HttpServlet {
 		}
 		
 		if(notNull) {
-			if(motDePasse.equals(motDePasse2)) {
-				
-				
-				EniEnchereManager utilisateur = new EniEnchereManager();
-				
-				try {
-					Utilisateur user = utilisateur.setNewUser(pseudo,nom,prenom,mail,tel,rue,codePostal,ville,motDePasse);
-					session.setAttribute("isConnected", true);
-					session.setAttribute("noUtilisateur", user.getNoUtilisateur());
-					session.setAttribute("pseudo", pseudo);
-					session.setAttribute("nom", nom);
-					session.setAttribute("prenom", prenom);
-					session.setAttribute("mail", mail);
-					session.setAttribute("tel", tel);
-					session.setAttribute("rue", rue);
-					session.setAttribute("codePostal", codePostal);
-					session.setAttribute("ville", ville);
-					
-					RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
+			EniEnchereManager exist = new EniEnchereManager();
+			
+			try {
+				if(!exist.isColloneExiste("pseudo", pseudo)) {
+					if(!exist.isColloneExiste("email", mail)) {		
+						if(motDePasse.equals(motDePasse2)) {
+							
+							
+							EniEnchereManager utilisateur = new EniEnchereManager();
+							
+							try {
+								Utilisateur user = utilisateur.setNewUser(pseudo,nom,prenom,mail,tel,rue,codePostal,ville,motDePasse);
+								session.setAttribute("isConnected", true);
+								session.setAttribute("noUtilisateur", user.getNoUtilisateur());
+								session.setAttribute("pseudo", pseudo);
+								session.setAttribute("nom", nom);
+								session.setAttribute("prenom", prenom);
+								session.setAttribute("mail", mail);
+								session.setAttribute("tel", tel);
+								session.setAttribute("rue", rue);
+								session.setAttribute("codePostal", codePostal);
+								session.setAttribute("ville", ville);
+								
+								RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
+								rd.forward(request, response);
+								
+							} catch (BusinessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}else {
+							request.setAttribute("errorInscription", "Vos mots de passe doivent être égaux !"); 
+							RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+							rd.forward(request, response);
+						}
+					}else {
+						request.setAttribute("errorInscription", "Votre E-mail est déja prise !");
+						RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+						rd.forward(request, response);
+					}
+				}else {
+					request.setAttribute("errorInscription", "Votre pseudo est déja pris !");
+					RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
 					rd.forward(request, response);
-					
-				} catch (BusinessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-				
-			}else {
-				request.setAttribute("errorInscription", "Vos mots de passe doivent être égaux !"); 
-				RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-				rd.forward(request, response);
+			} catch (BusinessException | ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}else {
 			request.setAttribute("errorInscription", "Tous les champs doivent être remplis !");
