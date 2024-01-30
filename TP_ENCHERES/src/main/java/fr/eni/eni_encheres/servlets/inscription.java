@@ -26,6 +26,12 @@ public class inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
 		List<String> valeurs = new ArrayList<String>();
@@ -78,24 +84,26 @@ public class inscription extends HttpServlet {
 					session.setAttribute("codePostal", codePostal);
 					session.setAttribute("ville", ville);
 					
+					RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
+					rd.forward(request, response);
+					
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 			}else {
-				session.setAttribute("errorMdpNotEqual", true); // Créer une variable de session utilisé dans le jsp afin d'aficher
-																// l'erreur "mdp différents"
+				request.setAttribute("errorInscription", "Vos mots de passe doivent être égaux !"); 
+				RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+				rd.forward(request, response);
 			}
+		}else {
+			request.setAttribute("errorInscription", "Tous les champs doivent être remplis !");
+			RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+			rd.forward(request, response);
 		}
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-		rd.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

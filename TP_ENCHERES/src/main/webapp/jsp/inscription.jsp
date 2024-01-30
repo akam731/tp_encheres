@@ -10,7 +10,7 @@
 </head>
 <body>
     <h2>ENI - Enchères</h2>
-    <form method="get" action="/TP_ENCHERES/inscription">
+    <form method="post" action="/TP_ENCHERES/inscription">
         <h1>Mon Profil</h1>
         <br>
         <br>
@@ -43,7 +43,7 @@
 
             <label for="ville">Ville :</label>
             <input type="text" id="ville" name="ville" required><br>
-
+			
 
             <label for="motDePasse">Confirmation :</label>
             <input type="password" id="motDePasse" name="motDePasse2" required><br>
@@ -56,5 +56,17 @@
           <input type="submit" name="annuler" id="annuler" value="Annuler">
         </div>
     </form>
+    <div id="erreur"
+    <%	String erreur = null;
+    	String style = null;
+		if(request.getAttribute("errorInscription") != null){
+			 erreur = (String)request.getAttribute("errorInscription");
+			 style = "display: block;";
+			 request.setAttribute("errorInscription",null);
+		}
+	%> style=" <%= style %> "
+    >
+        <p><%= erreur %></p>
+    </div>
 </body>
 </html>
