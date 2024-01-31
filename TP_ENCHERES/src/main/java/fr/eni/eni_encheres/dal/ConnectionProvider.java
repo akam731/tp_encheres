@@ -13,20 +13,22 @@ public class ConnectionProvider {
 	private static DataSource datasource;
 	
 	static
-	{
+	{	
+		Context context; 
 		try {
-			Context context = new InitialContext();
+			context = new InitialContext();
 			//Recherche de la datasource
-			ConnectionProvider.datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
-			
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
+			datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");	
+		} 
+		catch (NamingException e) 
+		{
 			e.printStackTrace();
+			throw new RuntimeException("Impossible d'acceder à la BDD");
 		}
 	}
 	
 	public static Connection getConnection() throws SQLException
 	{
-		return ConnectionProvider.datasource.getConnection();
+		return datasource.getConnection();
 	}	
 }

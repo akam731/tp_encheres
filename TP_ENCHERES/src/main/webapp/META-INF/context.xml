@@ -7,7 +7,7 @@
 		
 		url="jdbc:sqlserver://localhost;databasename=ENI-Encheres_BDD;encrypt=false"
 		username="utilisateurBDD"
-		password="Pa$$w0rd"
+		password="Thithi123"
 		
 		maxTotal="100"
 		maxIdle="30"

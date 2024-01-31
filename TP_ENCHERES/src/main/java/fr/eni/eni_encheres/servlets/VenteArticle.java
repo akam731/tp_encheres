@@ -53,8 +53,8 @@ public class VenteArticle extends HttpServlet {
         String ville;
         
 // Récupérer les données du formulaire
-        try 
-        {
+//        try 
+//        {
         	nomArticle = request.getParameter("nomArticle");
         	description = request.getParameter("description");
         	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
@@ -82,27 +82,28 @@ public class VenteArticle extends HttpServlet {
             nouvelArticleVendu.setDateDebutEncheres(debutEncheres);
             nouvelArticleVendu.setDateFinEncheres(finEncheres);
             nouvelArticleVendu.setMiseAPrix(miseAPrix);
+//            }
             
         	
 // Enregistrer l'article dans la base de données en utilisant la  DAL 
-            ArticleVenduManager articleVenduManager = new ArticleVenduManager();
-			articleVenduManager.enregistrerArticleVendu(nouvelArticleVendu, retrait, categorie);
-          //redirection vers la JSP 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AfficherVenteArticle.jsp");
-			rd.forward(request, response);
-        }
+//            ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+//			articleVenduManager.enregistrerArticleVendu(nouvelArticleVendu, retrait, categorie);
+//          //redirection vers la JSP 
+//            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AfficherVenteArticle.jsp");
+//			rd.forward(request, response);
+//        }
 //Gestion exceptions
-        catch(BusinessException e) 
-        {
-        	e.printStackTrace();
-        }
+//        catch(BusinessException e) 
+//        {
+//        	e.printStackTrace();
+//        }
+//        
+//
+//	}   		
+//      
         
 
-	}   		
-      
-        
+	}}   
 
-       
-}
 
 
