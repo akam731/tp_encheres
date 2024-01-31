@@ -13,6 +13,36 @@ public class EniEnchereManager {
 		this.enchereDAO = DAOFactory.getEncheresDAO();
 	}
 	
+	public Utilisateur editUserById(String pseudo,String nom,String prenom,String mail,String tel,String rue,String codePostal,String ville,String motDePasse, int credits, Boolean admin, int id) throws BusinessException{
+		
+		BusinessException businessException = new BusinessException();
+		
+		Utilisateur utilisateur = null;
+		
+		if(!businessException.hasErreurs()){
+			
+			utilisateur = new Utilisateur();
+			utilisateur.setNom(nom);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setPseudo(pseudo);
+			utilisateur.setEmail(mail);
+			utilisateur.setTelephone(tel);
+			utilisateur.setRue(rue);
+			utilisateur.setCodePostal(codePostal);
+			utilisateur.setVille(ville);
+			utilisateur.setMotDePasse(motDePasse);
+			utilisateur.setAdministrateur(admin);
+			utilisateur.setCredit(credits);
+			
+			utilisateur = this.enchereDAO.editUserById(utilisateur, id);
+			return utilisateur;
+			
+		}else {
+			throw businessException;
+		}
+		
+	}
+	
 	public void deleteUserById(int id) throws BusinessException{
 
 		BusinessException businessException = new BusinessException();
@@ -69,7 +99,7 @@ public class EniEnchereManager {
 			utilisateur.setAdministrateur(false);
 			utilisateur.setCredit(0);
 			
-			this.enchereDAO.setNewUser(utilisateur);
+			utilisateur = this.enchereDAO.setNewUser(utilisateur);
 		}else {
 			throw businessException;
 		}

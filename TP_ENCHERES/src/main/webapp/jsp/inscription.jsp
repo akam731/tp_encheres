@@ -17,43 +17,43 @@
         <div class="formulaire_flex">
           <div class="formulaire_gauche">
             <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="pseudo" required><br>
+            <input maxlength="30" type="text" id="pseudo" name="pseudo" required><br>
 
             <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required><br>
+            <input maxlength="30" type="text" id="prenom" name="prenom" required><br>
 
             <label for="telephone">Téléphone :</label>
-            <input type="tel" id="telephone" name="telephone" required><br>
+            <input maxlength="15" type="tel" id="telephone" name="telephone" required><br>
 
             <label for="codePostal">Code Postal :</label>
-            <input type="text" id="codePostal" name="codePostal" required><br>
+            <input maxlength="10" type="text" id="codePostal" name="codePostal" required><br>
 
             <label for="motDePasse">Mot de passe :</label>
-            <input type="password" id="motDePasse" name="motDePasse" required><br>
+            <input maxlength="30" type="password" id="motDePasse" name="motDePasse" required><br>
 
           </div>
           <div class="formulaire_droite">
             <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required><br>
+            <input maxlength="30" type="text" id="nom" name="nom" required><br>
             <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required><br>
+            <input maxlength="50" type="email" id="email" name="email" required><br>
 
             <label for="rue">Rue :</label>
-            <input type="text" id="rue" name="rue" required><br>
+            <input maxlength="50" type="text" id="rue" name="rue" required><br>
 
             <label for="ville">Ville :</label>
-            <input type="text" id="ville" name="ville" required><br>
+            <input maxlength="30" type="text" id="ville" name="ville" required><br>
 			
 
             <label for="motDePasse">Confirmation :</label>
-            <input type="password" id="motDePasse" name="motDePasse2" required><br>
+            <input maxlength="30" type="password" id="motDePasse" name="motDePasse2" required><br>
           </div>
         </div> 
         <br>
         <br>
         <div class="boutons">
           <input type="submit" name="creer" id="creer" value="Créer">
-          <input type="submit" name="annuler" id="annuler" value="Annuler">
+          <a href="acceuil" id="annuler">Annuler</a>
         </div>
     </form>
     <div id="erreur"

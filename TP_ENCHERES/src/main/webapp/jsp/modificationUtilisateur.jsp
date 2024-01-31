@@ -14,44 +14,44 @@
         <br>
         <div class="formulaire_flex">
           <div class="formulaire_gauche">
-            <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="pseudo" value="<%= session.getAttribute("pseudo") %>" required><br>
+            <label for="pseudo">Pseudo : *</label>
+            <input maxlength="30" type="text" id="pseudo" name="pseudo" value="<%= session.getAttribute("pseudo") %>" required><br>
 
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" value="<%= session.getAttribute("prenom") %>" required><br>
+            <label for="prenom">Prénom : *</label>
+            <input maxlength="30" type="text" id="prenom" name="prenom" value="<%= session.getAttribute("prenom") %>" required><br>
 
-            <label for="telephone">Téléphone :</label>
-            <input type="tel" id="telephone" name="telephone" value="<%= session.getAttribute("tel") %>" required><br>
+            <label for="telephone">Téléphone : *</label>
+            <input maxlength="15" type="tel" id="telephone" name="telephone" value="<%= session.getAttribute("tel") %>" required><br>
 
-            <label for="codePostal">Code Postal :</label>
-            <input type="text" id="codePostal" name="codePostal" value="<%= session.getAttribute("codePostal") %>" required><br>
+            <label for="codePostal">Code Postal : *</label>
+            <input maxlength="10" type="text" id="codePostal" name="codePostal" value="<%= session.getAttribute("codePostal") %>" required><br>
 
-            <label for="motDePasse">Mot de passe actuel :</label>
-            <input type="password" id="motDePasse" name="motDePasse" required><br>
+            <label for="motDePasse">Mot de passe actuel : *</label>
+            <input maxlength="30" type="password" id="motDePasse" name="motDePasse" required><br>
 
             <label for="Nouveau">Nouveau mot de passe :</label>
-            <input type="password" id="Nouveau" name="motDePasse2" ><br>
+            <input maxlength="30" type="password" id="Nouveau" name="motDePasse2" ><br>
 
-            <p>Credits : 650</p>
+            <p>Credits : <%= session.getAttribute("credits") %></p>
 
           </div>
           <div class="formulaire_droite">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" value="<%= session.getAttribute("nom") %>" required><br>
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" value="<%= session.getAttribute("mail") %>" required><br>
+            <label for="nom">Nom : *</label>
+            <input maxlength="30" type="text" id="nom" name="nom" value="<%= session.getAttribute("nom") %>" required><br>
+            <label for="email">Email : *</label>
+            <input maxlength="50" type="email" id="email" name="email" value="<%= session.getAttribute("mail") %>" required><br>
 
-            <label for="rue">Rue :</label>
-            <input type="text" id="rue" name="rue" value="<%= session.getAttribute("rue") %>" required><br>
+            <label for="rue">Rue : *</label>
+            <input maxlength="50" type="text" id="rue" name="rue" value="<%= session.getAttribute("rue") %>" required><br>
 
-            <label for="ville">Ville :</label>
-            <input type="text" id="ville" name="ville" value="<%= session.getAttribute("ville") %>" required><br>
+            <label for="ville">Ville : *</label>
+            <input maxlength="30" type="text" id="ville" name="ville" value="<%= session.getAttribute("ville") %>" required><br>
 
             <label style="visibility: hidden;"></label>
             <input style="visibility: hidden;"><br>
 
             <label for="Confirmation">Confirmation :</label>
-            <input type="password" id="Confirmation" name="motDePasse3"><br>
+            <input maxlength="30" type="password" id="Confirmation" name="motDePasse3"><br>
           </div>
         </div> 
         <br>
