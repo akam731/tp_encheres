@@ -47,7 +47,7 @@ public class connexion extends HttpServlet {
 			try {
 				
 				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
-				
+
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					
 					session.setAttribute("isConnected", true);
@@ -61,6 +61,8 @@ public class connexion extends HttpServlet {
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
 					session.setAttribute("mdp", utilisateur.getMotDePasse());
+					session.setAttribute("admin", utilisateur.isAdministrateur());
+					session.setAttribute("credits", utilisateur.getCredit());
 					
 					response.sendRedirect("acceuil");
 					
@@ -72,8 +74,12 @@ public class connexion extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/jsp/connexion.jsp");
-			rd.forward(request, response);
+			if(session.getAttribute("pseudo") != null) {
+				response.sendRedirect("acceuil");
+			}else {
+				RequestDispatcher rs = request.getRequestDispatcher("jsp/connexion.jsp");
+				rs.forward(request, response);
+			}
 		}
 		
 	}
@@ -107,6 +113,8 @@ public class connexion extends HttpServlet {
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
 					session.setAttribute("mdp", utilisateur.getMotDePasse());
+					session.setAttribute("credits", utilisateur.getCredit());
+					session.setAttribute("admin", utilisateur.isAdministrateur());
 					
 					
 			        if ("on".equals(souvenir)) {

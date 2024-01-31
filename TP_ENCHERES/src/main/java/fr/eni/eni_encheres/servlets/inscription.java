@@ -67,6 +67,8 @@ public class inscription extends HttpServlet {
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());
 					session.setAttribute("mdp", utilisateur.getMotDePasse());
+					session.setAttribute("admin", utilisateur.isAdministrateur());
+					session.setAttribute("credits", utilisateur.getCredit());
 					
 					response.sendRedirect("acceuil");
 					
@@ -78,8 +80,12 @@ public class inscription extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-			rd.forward(request, response);
+			if(session.getAttribute("pseudo") != null) {
+				response.sendRedirect("acceuil");
+			}else {
+				RequestDispatcher rs = request.getRequestDispatcher("jsp/inscription.jsp");
+				rs.forward(request, response);
+			}
 		}
 	}
 
@@ -131,22 +137,34 @@ public class inscription extends HttpServlet {
 								
 								try {
 									Utilisateur user = utilisateur.setNewUser(pseudo,nom,prenom,mail,tel,rue,codePostal,ville,motDePasse);
-									session.setAttribute("isConnected", true);
-									session.setAttribute("noUtilisateur", user.getNoUtilisateur());
-									session.setAttribute("pseudo", pseudo);
-									session.setAttribute("nom", nom);
-									session.setAttribute("prenom", prenom);
-									session.setAttribute("mail", mail);
-									session.setAttribute("tel", tel);
-									session.setAttribute("rue", rue);
-									session.setAttribute("codePostal", codePostal);
-									session.setAttribute("ville", ville);
-									session.setAttribute("mdp", motDePasse);
-									
-									response.sendRedirect("acceuil");
-									
+
+									if(!user.getPseudo().equals("ERREUR_WRONG_FORMAT")) {
+										
+										session.setAttribute("isConnected", true);
+										session.setAttribute("noUtilisateur", user.getNoUtilisateur());
+										session.setAttribute("pseudo", pseudo);
+										session.setAttribute("nom", nom);
+										session.setAttribute("prenom", prenom);
+										session.setAttribute("mail", mail);
+										session.setAttribute("tel", tel);
+										session.setAttribute("rue", rue);
+										session.setAttribute("codePostal", codePostal);
+										session.setAttribute("ville", ville);
+										session.setAttribute("mdp", motDePasse);
+										session.setAttribute("admin", user.isAdministrateur());
+										session.setAttribute("credits", user.getCredit());
+										
+										response.sendRedirect("acceuil");
+										
+									}else {
+										request.setAttribute("errorInscription", "Veuillez respecter le format de chaque champs de saisis !"); 
+										RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+										rd.forward(request, response);
+									}
 								} catch (BusinessException e) {
-									// TODO Auto-generated catch block
+									request.setAttribute("errorInscription", "Veuillez respecter le format de chaque champs !"); 
+									RequestDispatcher rd = request.getRequestDispatcher("/jsp/inscription.jsp");
+									rd.forward(request, response);
 									e.printStackTrace();
 								}
 								

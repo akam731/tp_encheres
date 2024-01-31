@@ -63,7 +63,9 @@ HttpSession session = request.getSession();
 					session.setAttribute("rue", utilisateur.getRue());
 					session.setAttribute("codePostal", utilisateur.getCodePostal());
 					session.setAttribute("ville", utilisateur.getVille());		
-					session.setAttribute("mdp", utilisateur.getMotDePasse());			
+					session.setAttribute("mdp", utilisateur.getMotDePasse());		
+					session.setAttribute("admin", utilisateur.isAdministrateur());
+					session.setAttribute("credits", utilisateur.getCredit());	
 				}
 			} catch (BusinessException e) {
 				e.printStackTrace();
@@ -88,7 +90,6 @@ HttpSession session = request.getSession();
 			}catch (BusinessException e) {
                 e.printStackTrace();
             }
-			System.out.println(utilisateur.toString());
 	        // Passer les informations à la JSP
 	        request.setAttribute("username", targetUsername);
 	        request.setAttribute("firstName", utilisateur.getPrenom());

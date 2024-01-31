@@ -61,6 +61,8 @@ public class acceuil extends HttpServlet {
 						session.setAttribute("codePostal", utilisateur.getCodePostal());
 						session.setAttribute("ville", utilisateur.getVille());
 						session.setAttribute("mdp", utilisateur.getMotDePasse());
+						session.setAttribute("admin", utilisateur.isAdministrateur());
+						session.setAttribute("credits", utilisateur.getCredit());
 						
 						response.sendRedirect("acceuil");
 						
@@ -79,6 +81,11 @@ public class acceuil extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
 			rd.forward(request, response);
 		}
+		
+		
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
