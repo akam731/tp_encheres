@@ -1,8 +1,6 @@
 package fr.eni.eni_encheres.bo;
 
-
-import java.time.LocalDateTime;
-
+import java.util.Date;
 
 /**
  * Classe modélisant un article vendu
@@ -24,8 +22,8 @@ public class ArticleVendu extends Retrait {
 	private String nomArticle;
 	private String description;
 	
-	private LocalDateTime dateDebutEncheres;
-	private LocalDateTime dateFinEncheres;
+	private Date dateDebutEncheres;
+	private Date dateFinEncheres;
 	
 	private int noUtilisateur;
 	private int noCategorie;
@@ -37,8 +35,8 @@ public class ArticleVendu extends Retrait {
 		super();
 	}
 	
-	public ArticleVendu( String nomArticle, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int noUtilisateur, boolean etatVente, int noCategorie ) {
+	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int noUtilisateur, boolean etatVente, int noCategorie ) {
 
 		super();
 		this.nomArticle = nomArticle;
@@ -57,13 +55,29 @@ public class ArticleVendu extends Retrait {
 //		this.noArticle = noArticle;//
 //	}
 
+	/**
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu( String nomArticle, String description,
+			Date dateDebutEncheres, Date dateFinEncheres, int prixVente,int miseAPrix, int noUtilisateur, int noCategorie) {
+		super();
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
 
-//		public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres, 
-//						 Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie, int miseAPrix, int prixVente ) {
-//		this( noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
-//		this.miseAPrix = miseAPrix;
-//		this.prixVente = prixVente;
-//	}
 
 	/* ***************** *
 	 * GETTERS / SETTERS *
@@ -77,6 +91,8 @@ public class ArticleVendu extends Retrait {
 //	public Integer getNoArticle() {
 //		return noArticle;
 //	}
+
+
 
 	public int getMiseAPrix() {
 		return miseAPrix;
@@ -113,22 +129,22 @@ public class ArticleVendu extends Retrait {
 		this.description = description;
 	}
 	
-	public LocalDateTime getDateDebutEncheres() {
+	public Date getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDateTime debutEncheres) {
+	public void setDateDebutEncheres(Date debutEncheres) {
 		this.dateDebutEncheres = debutEncheres;
 	}
 
 	
 
-	public LocalDateTime getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
 	
-	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 
 	}

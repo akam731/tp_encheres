@@ -2,8 +2,7 @@ package fr.eni.eni_encheres.servlets;
 
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +27,7 @@ public class VenteArticle extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDispatcher rd = request.getRequestDispatcher("/AfficherVenteArticle.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/AfficherVenteArticle.jsp");
 		rd.forward(request, response);	
 	}
 	
@@ -38,8 +37,8 @@ public class VenteArticle extends HttpServlet {
 	{
 		request.setCharacterEncoding("UTF-8");
 		
-		LocalDateTime debutEncheres;
-        LocalDateTime finEncheres;
+		Date debutEncheres;
+        Date finEncheres;
         String nomArticle; 
         String description; 
         String rue;
@@ -56,11 +55,9 @@ public class VenteArticle extends HttpServlet {
         	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
         	miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));	
         	String debutEnchereString = request.getParameter("dateDebutEncheres");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-			debutEncheres = LocalDateTime.parse(debutEnchereString, formatter);
+			debutEncheres = java.sql.Date.valueOf(debutEnchereString);
         	String finEnchereString = request.getParameter("dateFinEncheres");
-        	DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        	finEncheres = LocalDateTime.parse(finEnchereString, formatter1);
+        	finEncheres = java.sql.Date.valueOf(finEnchereString);
         	rue = request.getParameter("rue");
         	codePostal = request.getParameter("code_postal");
         	ville = request.getParameter("ville");
@@ -82,7 +79,7 @@ public class VenteArticle extends HttpServlet {
             ArticleVenduManager articleVenduManager = new ArticleVenduManager();
 			articleVenduManager.addArticleVendu(nouvelArticleVendu);
           //redirection vers la JSP 
-            RequestDispatcher rd = request.getRequestDispatcher("/AfficherVenteArticle.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/jsp/AfficherVenteArticle.jsp");
 			rd.forward(request, response);
         }
 //Gestion exceptions
