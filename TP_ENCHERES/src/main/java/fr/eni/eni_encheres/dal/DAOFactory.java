@@ -12,4 +12,9 @@ public abstract class DAOFactory {
 		return new EncheresDAOJdbcImpl();
 	}
 	
+	public static CategorieDAO getCategorieDAO()
+	{
+		return new CategorieDAOJdbcImpl();
+	}
+	
 }

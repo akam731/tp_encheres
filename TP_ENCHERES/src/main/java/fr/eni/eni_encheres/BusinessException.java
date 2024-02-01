@@ -14,7 +14,7 @@ public class BusinessException extends Exception {
 	}
 	public BusinessException() {
 		super();
-		this.listeCodesErreur=new ArrayList<>();
+		this.listeCodesErreur = new ArrayList<>();
 	}
 	
 	
