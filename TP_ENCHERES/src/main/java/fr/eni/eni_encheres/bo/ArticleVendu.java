@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @version Projet Enchères - v1.0
  * @author Amélie DUCASSE
  */
-public class ArticleVendu {
+public class ArticleVendu extends Retrait {
 
 	/* ********* *
 	 * ATTRIBUTS *
@@ -51,14 +51,14 @@ public class ArticleVendu {
 	}
 
 
-//	//public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
+//	public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
 //			LocalDateTime dateFinEncheres, Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie ) {
 //		this( nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
 //		this.noArticle = noArticle;//
 //	}
 
 
-//	public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres, 
+//		public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres, 
 //						 Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie, int miseAPrix, int prixVente ) {
 //		this( noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
 //		this.miseAPrix = miseAPrix;
@@ -68,12 +68,15 @@ public class ArticleVendu {
 	/* ***************** *
 	 * GETTERS / SETTERS *
 	 * ***************** */
-	public Integer getNoArticle() {
-		return noArticle;
-	}
-	public void setNoArticle( int noArticle ) {
+	
+
+	public void setNoArticle( Integer noArticle ) {
 		this.noArticle = noArticle;
 	}
+
+//	public Integer getNoArticle() {
+//		return noArticle;
+//	}
 
 	public int getMiseAPrix() {
 		return miseAPrix;
@@ -130,19 +133,19 @@ public class ArticleVendu {
 
 	}
 	
-//	public Utilisateur getNoUtilisateur() {
-//		return noUtilisateur;
-//	}
-//	public void setNoUtilisateur(Utilisateur noUtilisateur) {
-//		this.noUtilisateur = noUtilisateur;
-//	}
-//
-//	public Categorie getNoCategorie() {
-//		return noCategorie;
-//	}
-//	public void setNoCategorie(Categorie noCategorie) {
-//		this.noCategorie = noCategorie;
-//	}
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
 
 	/* Pour test :
 	 * @see java.lang.Object#toString()

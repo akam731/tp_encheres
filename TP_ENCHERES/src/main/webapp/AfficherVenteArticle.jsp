@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,6 @@
 </head>
 <body>
 	<h2>Vendre un Article</h2>
-
 <form action="/VenteArticle" method="post">  
     <label for="nom">Nom de l'article :</label>
     <input type="text" id="nomArticle" name="nomArticle" required>
@@ -29,10 +30,10 @@
      <a href="">Upload photo</a>
      <br>
      <label for="dateDebutEncheres">Date de début d'enchères:</label>
-    <input type="date" id="dateDebutEncheres" name="dateDebutEncheres" value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd-hh-mm' />" required>
+    <input type="datetime-local" id="dateDebutEncheres" name="dateDebutEncheres" value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd HH:mm'/>" required>
     <br>
     <label for="dateFinEncheres">Date de fin d'enchères:</label>
-    <input type="date" id="dateFinEncheres" name="dateFinEncheres" value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd-hh-mm' />" required>
+    <input type="datetime-local" id="dateFinEncheres" name="dateFinEncheres" value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd HH:mm' />" required>
     <br>
      <label for="rue">Rue:</label>
     <input type="text" id="rue" name="rue" required><br>

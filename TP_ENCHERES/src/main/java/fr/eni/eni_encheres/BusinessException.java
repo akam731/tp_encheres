@@ -8,10 +8,15 @@ public class BusinessException extends Exception {
 	private static final long serialVersionUID = 1L;
 	private List<Integer> listeCodesErreur;
 	
+	public BusinessException( String message )
+	{
+		super( message );
+	}
 	public BusinessException() {
 		super();
 		this.listeCodesErreur=new ArrayList<>();
 	}
+	
 	
 	public void ajouterErreur(int code)
 	{

@@ -11,7 +11,7 @@ public class Retrait {
 	/* ********* *
 	 * ATTRIBUTS *
 	 * ********* */
-	private ArticleVendu noArticle;
+	private Integer noArticle;
 	
 	private String rue;
 	private String codePostal;
@@ -24,7 +24,7 @@ public class Retrait {
 		super();
 	}
 
-	public Retrait( ArticleVendu noArticle, String rue, String codePostal, String ville ) {
+	public Retrait( Integer noArticle, String rue, String codePostal, String ville ) {
 		super();
 		this.noArticle 	= noArticle;
 		this.rue 		= rue;
@@ -35,10 +35,10 @@ public class Retrait {
 	/* ***************** *
 	 * GETTERS / SETTERS *
 	 * ***************** */
-	public ArticleVendu getNoArticle() {
+	public Integer getNoArticle() {
 		return noArticle;
 	}
-	public void setNoArticle( ArticleVendu noArticle ) {
+	public void setNoArticle( Integer noArticle ) {
 		this.noArticle = noArticle;
 	}
 

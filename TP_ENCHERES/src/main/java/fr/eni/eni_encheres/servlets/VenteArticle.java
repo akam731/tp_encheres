@@ -2,10 +2,9 @@ package fr.eni.eni_encheres.servlets;
 
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bll.ArticleVenduManager;
 import fr.eni.eni_encheres.bo.ArticleVendu;
-import fr.eni.eni_encheres.bo.Categorie;
-import fr.eni.eni_encheres.bo.Retrait;
-import fr.eni.eni_encheres.bo.Utilisateur;
 
 
 /**
@@ -32,7 +28,7 @@ public class VenteArticle extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AfficherVenteArticle.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/AfficherVenteArticle.jsp");
 		rd.forward(request, response);	
 	}
 	
@@ -42,19 +38,19 @@ public class VenteArticle extends HttpServlet {
 	{
 		request.setCharacterEncoding("UTF-8");
 		
+		LocalDateTime debutEncheres;
+        LocalDateTime finEncheres;
         String nomArticle; 
         String description; 
-        int noCategorie;
-        int miseAPrix; 
-        LocalDateTime debutEncheres;
-        LocalDateTime finEncheres;
         String rue;
         String codePostal;
         String ville;
+        int noCategorie;
+        int miseAPrix;
         
 // Récupérer les données du formulaire
-//        try 
-//        {
+      try 
+        {
         	nomArticle = request.getParameter("nomArticle");
         	description = request.getParameter("description");
         	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
@@ -71,39 +67,36 @@ public class VenteArticle extends HttpServlet {
         	
 // Créer un objet Article avec les données du formulaire
             ArticleVendu nouvelArticleVendu = new ArticleVendu();
-            Categorie categorie = new Categorie();
-            Retrait retrait = new Retrait();
-            categorie.setNoCategorie(noCategorie);
-            retrait.setRue(rue);
-            retrait.setCodePostal(codePostal);
-            retrait.setVille(ville);
+           
+            nouvelArticleVendu.setNoCategorie(noCategorie);
+            nouvelArticleVendu.setRue(rue);
+            nouvelArticleVendu.setCodePostal(codePostal);
+            nouvelArticleVendu.setVille(ville);
             nouvelArticleVendu.setNomArticle(nomArticle);
             nouvelArticleVendu.setDescription(description);
             nouvelArticleVendu.setDateDebutEncheres(debutEncheres);
             nouvelArticleVendu.setDateFinEncheres(finEncheres);
             nouvelArticleVendu.setMiseAPrix(miseAPrix);
-//            }
-            
-        	
-// Enregistrer l'article dans la base de données en utilisant la  DAL 
-//            ArticleVenduManager articleVenduManager = new ArticleVenduManager();
-//			articleVenduManager.enregistrerArticleVendu(nouvelArticleVendu, retrait, categorie);
-//          //redirection vers la JSP 
-//            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AfficherVenteArticle.jsp");
-//			rd.forward(request, response);
-//        }
+            	
+ // Enregistrer l'article dans la base de données en utilisant la  DAL 
+            ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+			articleVenduManager.addArticleVendu(nouvelArticleVendu);
+          //redirection vers la JSP 
+            RequestDispatcher rd = request.getRequestDispatcher("/AfficherVenteArticle.jsp");
+			rd.forward(request, response);
+        }
 //Gestion exceptions
-//        catch(BusinessException e) 
-//        {
-//        	e.printStackTrace();
-//        }
-//        
-//
-//	}   		
-//      
+        catch(BusinessException e) 
+        {
+        	e.printStackTrace();
+        }
         
 
-	}}   
+}  		
+      
+        
+
+	}   
 
 
 

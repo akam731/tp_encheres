@@ -19,9 +19,8 @@ public class ArticleVenduManager {
 	public void addArticleVendu (ArticleVendu articleVendu) throws BusinessException {
 		if (articleVendu.getNoArticle() != null) 
 		{
-			throw new BusinessException();
+			throw new BusinessException("L'article existe déjà");
 		}
-		avDAO.insert(articleVendu);
-
+			avDAO.insert(articleVendu);
 	}
 }
