@@ -1,4 +1,4 @@
-package Test;
+package tests;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
