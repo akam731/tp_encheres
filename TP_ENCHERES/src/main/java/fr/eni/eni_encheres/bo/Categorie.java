@@ -21,10 +21,14 @@ public class Categorie {
 		super();
 	}
 
-	public Categorie( int noCategorie, String libelle ) {
+	public Categorie( String libelle ) {
 		super();
-		this.noCategorie = noCategorie;
 		this.libelle 	 = libelle;
+	}
+	
+	public Categorie( int noCategorie, String libelle ) {
+		this( libelle );
+		this.noCategorie = noCategorie;
 	}
 	
 	/* ***************** *
