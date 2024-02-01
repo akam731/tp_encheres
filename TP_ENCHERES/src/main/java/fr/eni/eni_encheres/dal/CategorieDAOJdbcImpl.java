@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eni_encheres.BusinessException;
@@ -14,7 +16,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	/* REQUETES */
 	private static final String ADD_CATEGORIE = "INSERT INTO Categories(libelle) VALUES (?)";
 	
-	private static final String FIND_ALL_CATEGORIES = "";
+	private static final String FIND_ALL_CATEGORIES = "SELECT no_categorie, libelle FROM Categories";
 	private static final String FIND_CATEGORIE_BY_ID = "";
 	
 	private static final String UPDATE_CATEGORIE = "";
@@ -29,7 +31,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	public void insertCategorie(Categorie categorie) throws BusinessException {
 		
 		try ( Connection cnx = ConnectionProvider.getConnection(); 
-			  PreparedStatement pstmt = cnx.prepareStatement(ADD_CATEGORIE, PreparedStatement.RETURN_GENERATED_KEYS);
+			  PreparedStatement pstmt = cnx.prepareStatement( ADD_CATEGORIE, PreparedStatement.RETURN_GENERATED_KEYS );
 			) 
 		{
 			pstmt.setString( 1, categorie.getLibelle() );
@@ -51,8 +53,30 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 
 	@Override
 	public List<Categorie> selectAllCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Categorie> listeCategories = null;
+		Categorie cat = null;
+		
+		try ( Connection cnx = ConnectionProvider.getConnection();
+			  Statement stmt = cnx.createStatement();
+			  ResultSet rs 	 = stmt.executeQuery( FIND_ALL_CATEGORIES );
+			)
+		{
+			while ( rs.next() ) {
+				
+				if ( listeCategories == null ) {
+					listeCategories = new ArrayList<>();
+				}
+				
+				cat = new Categorie( rs.getInt("no_categorie"), rs.getString("libelle") );
+				listeCategories.add(cat);
+			}
+			
+		} 
+		catch ( SQLException e ) {
+			e.printStackTrace();
+		}
+		
+		return listeCategories;
 	}
 	@Override
 	public Categorie selectCategorieById(int noCategorie) {
@@ -71,5 +95,4 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

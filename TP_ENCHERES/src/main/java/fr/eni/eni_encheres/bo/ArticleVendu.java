@@ -1,7 +1,8 @@
 package fr.eni.eni_encheres.bo;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 
 
 /**
@@ -24,8 +25,8 @@ public class ArticleVendu extends Retrait {
 	private String nomArticle;
 	private String description;
 	
-	private LocalDateTime dateDebutEncheres;
-	private LocalDateTime dateFinEncheres;
+	private LocalDate dateDebutEncheres;
+	private LocalDate dateFinEncheres;
 	
 	private int noUtilisateur;
 	private int noCategorie;
@@ -37,8 +38,8 @@ public class ArticleVendu extends Retrait {
 		super();
 	}
 	
-	public ArticleVendu( String nomArticle, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int noUtilisateur, boolean etatVente, int noCategorie ) {
+	public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int noUtilisateur, boolean etatVente, int noCategorie ) {
 
 		super();
 		this.nomArticle = nomArticle;
@@ -51,16 +52,30 @@ public class ArticleVendu extends Retrait {
 	}
 
 
-//	public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
-//			LocalDateTime dateFinEncheres, Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie ) {
+//	public ArticleVendu( int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+//			LocalDate dateFinEncheres, Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie ) {
 //		this( nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
 //		this.noArticle = noArticle;//
 //	}
 
+	
 
-//		public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres, 
+		public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+							int noUtilisateur, int noCategorie, int miseAPrix, int prixVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+	}
+
+//		public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, 
 //						 Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie, int miseAPrix, int prixVente ) {
-//		this( noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
+//		this( nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
 //		this.miseAPrix = miseAPrix;
 //		this.prixVente = prixVente;
 //	}
@@ -113,22 +128,22 @@ public class ArticleVendu extends Retrait {
 		this.description = description;
 	}
 	
-	public LocalDateTime getDateDebutEncheres() {
+	public LocalDate getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDateTime debutEncheres) {
+	public void setDateDebutEncheres(LocalDate debutEncheres) {
 		this.dateDebutEncheres = debutEncheres;
 	}
 
 	
 
-	public LocalDateTime getDateFinEncheres() {
+	public LocalDate getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
 	
-	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
+	public void setDateFinEncheres(LocalDate dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 
 	}

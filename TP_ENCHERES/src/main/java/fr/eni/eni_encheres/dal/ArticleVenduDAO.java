@@ -4,11 +4,6 @@ import java.util.List;
 
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.ArticleVendu;
-import fr.eni.eni_encheres.bo.Categorie;
-import fr.eni.eni_encheres.bo.Retrait;
-import fr.eni.eni_encheres.bo.Utilisateur;
-
-
 
 public interface ArticleVenduDAO {
 	

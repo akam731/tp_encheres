@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.eni_encheres.dal.DAOFactory;
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bll.EniEnchereManager;
 import fr.eni.eni_encheres.bo.Utilisateur;
-import fr.eni.eni_encheres.dal.EncheresDAO;
 
 /**
  * Servlet implementation class inscription

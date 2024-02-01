@@ -2,10 +2,12 @@ package fr.eni.eni_encheres.dal;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import fr.eni.eni_encheres.BusinessException;
@@ -16,7 +18,7 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	
 	private final String AJOUT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+	private final String SELECT_DATE_DEBUT = "SELECT date_debut_encheres FROM Articles_vendus";
 	@Override
 	public void insert (ArticleVendu articleVendu) throws BusinessException {
 		
@@ -25,8 +27,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		{
 				ps.setString(1, articleVendu.getNomArticle());
 		        ps.setString(2, articleVendu.getDescription());
-		        ps.setTimestamp(3, (Timestamp.valueOf(articleVendu.getDateDebutEncheres())));	
-		        ps.setTimestamp(4, (Timestamp.valueOf(articleVendu.getDateFinEncheres())));
+		        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern(SELECT_DATE_DEBUT);
+//		        ps.setDate(3, articleVendu.getDateDebutEncheres() ) );	
+//		        ps.setDate(4, articleVendu.getDateFinEncheres() );
 		        ps.setInt(5, articleVendu.getMiseAPrix());
 		        ps.setInt(6, articleVendu.getNoUtilisateur());
 		        ps.setInt(7, articleVendu.getNoCategorie());
