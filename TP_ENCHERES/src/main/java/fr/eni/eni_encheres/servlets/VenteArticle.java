@@ -2,9 +2,6 @@ package fr.eni.eni_encheres.servlets;
 
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -40,8 +37,8 @@ public class VenteArticle extends HttpServlet {
 	{
 		request.setCharacterEncoding("UTF-8");
 		
-		LocalDate debutEncheres;
-		LocalDate finEncheres;
+		Date debutEncheres;
+        Date finEncheres;
         String nomArticle; 
         String description; 
         String rue;
@@ -58,9 +55,9 @@ public class VenteArticle extends HttpServlet {
         	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
         	miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));	
         	String debutEnchereString = request.getParameter("dateDebutEncheres");
-			LocalDate formatter = LocalDate.parse(debutEnchereString);
+			debutEncheres = java.sql.Date.valueOf(debutEnchereString);
         	String finEnchereString = request.getParameter("dateFinEncheres");
-        	LocalDate formatter1 = LocalDate.parse(finEnchereString);
+        	finEncheres = java.sql.Date.valueOf(finEnchereString);
         	rue = request.getParameter("rue");
         	codePostal = request.getParameter("code_postal");
         	ville = request.getParameter("ville");
@@ -74,8 +71,8 @@ public class VenteArticle extends HttpServlet {
             nouvelArticleVendu.setVille(ville);
             nouvelArticleVendu.setNomArticle(nomArticle);
             nouvelArticleVendu.setDescription(description);
-//            nouvelArticleVendu.setDateDebutEncheres(debutEncheres);
-//            nouvelArticleVendu.setDateFinEncheres(finEncheres);
+            nouvelArticleVendu.setDateDebutEncheres(debutEncheres);
+            nouvelArticleVendu.setDateFinEncheres(finEncheres);
             nouvelArticleVendu.setMiseAPrix(miseAPrix);
             	
  // Enregistrer l'article dans la base de données en utilisant la  DAL 
@@ -97,6 +94,3 @@ public class VenteArticle extends HttpServlet {
         
 
 	}   
-
-
-

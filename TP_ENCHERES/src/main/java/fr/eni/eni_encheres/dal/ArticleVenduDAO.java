@@ -5,6 +5,8 @@ import java.util.List;
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.ArticleVendu;
 
+
+
 public interface ArticleVenduDAO {
 	
 	public void insert(ArticleVendu articleVendu) throws BusinessException;

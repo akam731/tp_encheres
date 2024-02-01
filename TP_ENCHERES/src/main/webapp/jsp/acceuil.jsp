@@ -45,7 +45,7 @@
     	<div class="form_flex">
     		<div class="recherche">
     			<div class="img_loupe">
-    				<img id="loupe" src="images/loupe.png">
+    				<img id="loupe" src="../images/loupe.png">
     			</div>
     			<input id="barre_recherche" type="text" name="rechercher" placeholder="Le nom de l'article contient">
     		</div>
@@ -56,7 +56,7 @@
     				<option value="info">Informatique</option>
     				<option>Ameublement</option>
     				<option value="vetements">Vêtements</option>
-    				<option value="sport">Sport & Loisirs</option>
+    				<option value="sport">Sport et Loisirs</option>
     			</select>
     		</div>
     	</div>
