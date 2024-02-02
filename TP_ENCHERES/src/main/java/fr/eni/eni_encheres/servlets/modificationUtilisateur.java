@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eni_encheres.BusinessException;
+import fr.eni.eni_encheres.bll.ArticleVenduManager;
 import fr.eni.eni_encheres.bll.EniEnchereManager;
 import fr.eni.eni_encheres.bo.Utilisateur;
+import fr.eni.eni_encheres.dal.ArticleVenduDAO;
 
 /**
  * Servlet implementation class modificationUtilisateur
@@ -94,7 +96,9 @@ public class modificationUtilisateur extends HttpServlet {
 		if("Suppimer mon compte".equals(request.getParameter("suppimer"))) {
 			if(request.getParameter("motDePasse").equals(session.getAttribute("mdp"))) {
 				EniEnchereManager user = new EniEnchereManager();
+				ArticleVenduManager article = new ArticleVenduManager();
 				try {
+					article.updateArticleDeteletedUtilisateur((int)session.getAttribute("noUtilisateur"));
 					user.deleteUserById((int)session.getAttribute("noUtilisateur"));
 					response.sendRedirect("deconnexion");
 				} catch (BusinessException e) {

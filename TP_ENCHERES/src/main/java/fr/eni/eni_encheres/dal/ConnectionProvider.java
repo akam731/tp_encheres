@@ -17,7 +17,8 @@ public class ConnectionProvider {
 		Context context; 
 		try {
 			context = new InitialContext();
-			//Recherche de la datasource
+			//Recherche de la datasource 
+			context = new InitialContext();
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");	
 		} 
 		catch (NamingException e) 

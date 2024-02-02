@@ -121,7 +121,9 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 				pstmt.setString(1, value);
 				try(ResultSet rs = pstmt.executeQuery();){
 					if(rs.next()) {
+						
 						return rs.getInt(1) > 0;
+						
 					}
 				}
 			}

@@ -11,6 +11,12 @@ public class ArticleVenduManager {
 	
 	private static ArticleVenduDAO avDAO;
 	
+	public void updateArticleDeteletedUtilisateur(int idUser) throws BusinessException{
+		
+		avDAO.updateArticleDeteletedUtilisateur(idUser);
+		
+	}
+	
 	public ArticleVenduManager() 
 	{
 		avDAO=DAOFactory.getArticleVenduDAO();

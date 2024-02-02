@@ -89,7 +89,21 @@ public class acceuil extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		
+		
+		if("Rechercher".equals(request.getParameter("rechercher_button"))) {
+			
+			String recherche = request.getParameter("rechercher");
+			String categorie = request.getParameter("categorie");
+			
+			
+			
+			System.out.println(recherche + " " + categorie);
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
+		rd.forward(request, response);
 	}
 
 }
