@@ -22,6 +22,22 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	private static final String SELECT_ARTICLEVENDUS_BY_ID="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLE_VENDUS WHERE no_article=?";
 	private static final String UPDATE_ARTICLEVENDUS="UPDATE ARTICLE_VENDU SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=? WHERE no_article=?";
 	private static final String DELETE_ARTICLEVENDUS="DELETE FROM ARTICLE_VENDU WHERE no_article=?";
+	private static final String UPDATE_ARTICLE_DELETED_USER = "UPDATE ARTICLES_VENDUS SET no_utilisateur = null WHERE no_utilisateur = ?";
+
+	public void updateArticleDeteletedUtilisateur(int userId) throws BusinessException{
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ARTICLE_DELETED_USER);
+			pstmt.setInt(1, userId);
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	@Override
 	public void insertArticleVendu (ArticleVendu articleVendu) throws BusinessException {
@@ -78,8 +94,8 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 						rs.getString( "description" ), 
 						rs.getDate("date_debut_encheres"), 
 						rs.getDate("date_fin_encheres"), 
-						rs.getInt	( "prix_vente" ), 
-						rs.getInt	( "prix_initial" ), 
+						rs.getInt( "prix_vente" ), 
+						rs.getInt( "prix_initial" ), 
 						rs.getInt( "no_utilisateur" ),
 						rs.getInt("no_categorie")
 					);
@@ -119,8 +135,8 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 							rs.getString( "description" ), 
 							rs.getDate("date_debut_encheres"), 
 							rs.getDate("date_fin_encheres"), 
-							rs.getInt	( "prix_vente" ), 
-							rs.getInt	( "prix_initial" ), 
+							rs.getInt( "prix_vente" ), 
+							rs.getInt( "prix_initial" ), 
 							rs.getInt( "no_utilisateur" ),
 							rs.getInt("no_categorie")		
 						);
@@ -181,8 +197,5 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			businessException.ajouterErreur(CodesResultatDAL.MAJ_ARTICLE_ECHEC);
 			throw businessException;
 		}
-		
 	}
-
-
 }

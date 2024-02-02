@@ -10,4 +10,5 @@ public interface EncheresDAO {
 	public Utilisateur getUserBy(String colonne, String value) throws BusinessException;
 	public void deleteUser(int userID) throws BusinessException;
 	public Utilisateur editUserById(Utilisateur utilisateur, int id) throws BusinessException;
+	
 }
