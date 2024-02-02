@@ -15,7 +15,8 @@ public class ConnectionProvider {
 	static
 	{	
 		Context context; 
-		try {
+		try 
+		{
 			context = new InitialContext();
 			//Recherche de la datasource
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");	

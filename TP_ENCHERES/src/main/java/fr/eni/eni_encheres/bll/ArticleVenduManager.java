@@ -7,7 +7,8 @@ import fr.eni.eni_encheres.dal.DAOFactory;
 
 
 
-public class ArticleVenduManager {
+public class ArticleVenduManager 
+{
 	
 	private static ArticleVenduDAO avDAO;
 	
@@ -16,10 +17,14 @@ public class ArticleVenduManager {
 		avDAO=DAOFactory.getArticleVenduDAO();
 	}
 	
-	public void addArticleVendu (ArticleVendu articleVendu) throws BusinessException {
+	//Methode pour ajouter un article 
+	public void addArticleVendu (ArticleVendu articleVendu) throws BusinessException 
+	{
 		if (articleVendu.getNoArticle() != null) 
 		{
-			throw new BusinessException("L'article existe déjà");
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_ALREADY_EXIST);
+			throw businessException;
 		}
 			avDAO.insertArticleVendu(articleVendu);
 	}

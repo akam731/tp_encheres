@@ -14,8 +14,6 @@ import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.ArticleVendu;
 
 
-
-
 public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	
 	private final String INSERT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
@@ -57,6 +55,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			throw businessException;
 		}
 	}
 
@@ -89,7 +90,10 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		}
 		catch ( SQLException e ) 
 		{
-			throw new BusinessException();
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_ECHEC);
+			throw businessException;
 		}
 		return listeArt;
 	}
@@ -126,6 +130,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			catch ( SQLException e ) 
 			{
 				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.LECTURE_ARTICLE_ECHEC);
+				throw businessException;
 			}	
 			return art;
 		}
@@ -140,8 +147,12 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 				ps.setInt(1, noArticleVendu);
 				ps.executeUpdate();
 			} 
-			catch (SQLException e) {
-					e.printStackTrace();
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.SUPPRIMER_ARTICLE_ECHEC);
+				throw businessException;
 			}
 	}
 	
@@ -166,6 +177,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.MAJ_ARTICLE_ECHEC);
+			throw businessException;
 		}
 		
 	}

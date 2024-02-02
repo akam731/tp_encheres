@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENI - Ecnhères | Profil</title>
+    <title>ENI - Enchères | Profil</title>
     <link href="css/utilisateur.css" rel="stylesheet">
 </head>
 <body>

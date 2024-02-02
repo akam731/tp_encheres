@@ -31,6 +31,18 @@ public class Retrait {
 		this.codePostal = codePostal;
 		this.ville 		= ville;
 	}
+	
+	/**
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(String rue, String codePostal, String ville) {
+		super();
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
 
 	/* ***************** *
 	 * GETTERS / SETTERS *

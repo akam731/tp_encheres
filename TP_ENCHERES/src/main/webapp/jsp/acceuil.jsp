@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header class="acceuil_header">
-    	<h2>ENI - Ecnhères | Acceuil</h2>
+    	<h2>ENI - Enchères | Accueil</h2>
     	<nav>
     	<% 
     	
@@ -20,7 +20,7 @@
     	if(userId != null){
     		%>
     		<a href="">Enchères</a>
-    		<a href="">Vendre un article</a>
+    		<a href="VenteArticle">Vendre un article</a>
     		<a href="utilisateur?username=<%= session.getAttribute("pseudo") %>">Mon profil</a>
     		<a href="deconnexion">Déconnexion</a>
     		
