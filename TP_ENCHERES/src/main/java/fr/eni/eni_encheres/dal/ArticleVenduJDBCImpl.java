@@ -18,18 +18,18 @@ import fr.eni.eni_encheres.bo.ArticleVendu;
 
 public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	
-	private final String AJOUT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
+	private final String INSERT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String SQL_SELECT_ALL="SELECT INTO ARTICLE_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_vente, prix_initial, no_utilisateur, no_categorie) FROM ARTICLE_VENDUS WHERE idArticle=?";
-	private static final String SQL_SELECT_BY_ID="";
-	private static final String SQL_UPDATE="";
-	private static final String SQL_DELETE="";
+	private static final String SELECT_ARTICLEVENDUS="SELECT INTO ARTICLE_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_vente, prix_initial, no_utilisateur, no_categorie) FROM ARTICLE_VENDUS";
+	private static final String SELECT_ARTICLEVENDUS_BY_ID="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLE_VENDUS WHERE no_article=?";
+	private static final String UPDATE_ARTICLEVENDUS="UPDATE ARTICLE_VENDU SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=? WHERE no_article=?";
+	private static final String DELETE_ARTICLEVENDUS="DELETE FROM ARTICLE_VENDU WHERE no_article=?";
 	
 	@Override
-	public void insert (ArticleVendu articleVendu) throws BusinessException {
+	public void insertArticleVendu (ArticleVendu articleVendu) throws BusinessException {
 		
 		try(Connection cnx = ConnectionProvider.getConnection();
-			PreparedStatement ps=cnx.prepareStatement(AJOUT_ARTICLEVENDUS,PreparedStatement.RETURN_GENERATED_KEYS);) 
+			PreparedStatement ps=cnx.prepareStatement(INSERT_ARTICLEVENDUS,PreparedStatement.RETURN_GENERATED_KEYS);) 
 		{
 				ps.setString(1, articleVendu.getNomArticle());
 		        ps.setString(2, articleVendu.getDescription());
@@ -61,15 +61,15 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> selectAll() throws BusinessException 
+	public List<ArticleVendu> selectAllArticleVendu() throws BusinessException 
 	{
 		List<ArticleVendu> listeArt = new ArrayList<>();
 		
 		try(Connection cnx = ConnectionProvider.getConnection(); 
 			Statement stmt= cnx.createStatement();
-			ResultSet rs = stmt.executeQuery(SQL_SELECT_ALL);) 
+			ResultSet rs = stmt.executeQuery(SELECT_ARTICLEVENDUS);) 
 		{
-			while( rs.next() ) 
+			while(rs.next()) 
 			{
 				ArticleVendu art = new ArticleVendu
 					(
@@ -95,17 +95,78 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public ArticleVendu selectById(int noArticleVendu) throws BusinessException {
-		return null;
-	}
+	public ArticleVendu selectArticleVenduById(int noArticleVendu) throws BusinessException 
+	{
+		ArticleVendu art = null;
+			
+			try (Connection cnx = ConnectionProvider.getConnection();
+				 PreparedStatement ps = cnx.prepareStatement(SELECT_ARTICLEVENDUS_BY_ID);
+				)
+			{
+				ps.setInt(1, noArticleVendu);
+				ResultSet rs = ps.executeQuery();
+	
+				if (rs.next()) 
+				{
+					art = new ArticleVendu
+						( 
+							rs.getInt("no_article"), 
+							rs.getString( "nomArticle" ), 
+							rs.getString( "description" ), 
+							rs.getDate("date_debut_encheres"), 
+							rs.getDate("date_fin_encheres"), 
+							rs.getInt	( "prix_vente" ), 
+							rs.getInt	( "prix_initial" ), 
+							rs.getInt( "no_utilisateur" ),
+							rs.getInt("no_categorie")		
+						);
+				}
+				rs.close();
+			} 
+			catch ( SQLException e ) 
+			{
+				e.printStackTrace();
+			}	
+			return art;
+		}
 
 	@Override
-	public void delete(int noArticleVendu) throws BusinessException {
-		
+	public void deleteArticleVendu(int noArticleVendu) throws BusinessException 
+	{
+		try (Connection cnx = ConnectionProvider.getConnection();
+				  PreparedStatement ps = cnx.prepareStatement(DELETE_ARTICLEVENDUS);
+			)
+			{
+				ps.setInt(1, noArticleVendu);
+				ps.executeUpdate();
+			} 
+			catch (SQLException e) {
+					e.printStackTrace();
+			}
 	}
-
+	
 	@Override
-	public void update(ArticleVendu articleVendu) throws BusinessException {
+	public void updateArticleVendu(ArticleVendu articleVendu) throws BusinessException 
+	{
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement ps = cnx.prepareStatement(UPDATE_ARTICLEVENDUS);
+			)
+		{	
+			ps.setInt(1,articleVendu.getNoArticle());
+			ps.setString(2, articleVendu.getNomArticle()); 
+			ps.setString(3,articleVendu.getDescription()); 
+			ps.setDate(4,(Date) articleVendu.getDateDebutEncheres()); 
+			ps.setDate(5,(Date) articleVendu.getDateFinEncheres()); 
+			ps.setInt(6,articleVendu.getPrixVente()); 
+			ps.setInt(7,articleVendu.getMiseAPrix()); 
+			ps.setInt(8,articleVendu.getNoUtilisateur());
+			ps.setInt(9,articleVendu.getNoCategorie());
+			ps.executeUpdate();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
 		
 	}
 

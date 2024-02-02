@@ -21,6 +21,6 @@ public class ArticleVenduManager {
 		{
 			throw new BusinessException("L'article existe déjà");
 		}
-			avDAO.insert(articleVendu);
+			avDAO.insertArticleVendu(articleVendu);
 	}
 }

@@ -13,7 +13,7 @@ public class ArticleVendu extends Retrait {
 	/* ********* *
 	 * ATTRIBUTS *
 	 * ********* */
-	private Integer noArticle;
+	private int noArticle;
 	private int miseAPrix;
 	private int prixVente;
 	
@@ -49,11 +49,11 @@ public class ArticleVendu extends Retrait {
 	}
 
 
-//	public ArticleVendu( int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
-//			LocalDateTime dateFinEncheres, Utilisateur noUtilisateur, boolean etatVente, Categorie noCategorie ) {
-//		this( nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
-//		this.noArticle = noArticle;//
-//	}
+	public ArticleVendu( int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int noUtilisateur, boolean etatVente, int noCategorie ) {
+		this( nomArticle, description, dateDebutEncheres, dateFinEncheres, noUtilisateur, etatVente, noCategorie );
+		this.noArticle = noArticle;
+	}
 
 	/**
 	 * @param miseAPrix
@@ -77,20 +77,43 @@ public class ArticleVendu extends Retrait {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-
+	/**
+	 * @param noArticle
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
+	public ArticleVendu( Integer noArticle, String nomArticle, String description,
+			Date dateDebutEncheres, Date dateFinEncheres, int prixVente,int miseAPrix, int noUtilisateur, int noCategorie) {
+		super();
+		this.noArticle=noArticle;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
 
 	/* ***************** *
 	 * GETTERS / SETTERS *
 	 * ***************** */
 	
 
-	public void setNoArticle( Integer noArticle ) {
+	public void setNoArticle( int noArticle ) {
 		this.noArticle = noArticle;
 	}
 
-//	public Integer getNoArticle() {
-//		return noArticle;
-//	}
+	public Integer getNoArticle() {
+		return noArticle;
+	}
 
 
 
