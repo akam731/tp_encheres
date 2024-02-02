@@ -26,12 +26,6 @@ public class ArticleVenduManager
 	//Methode pour ajouter un article 
 	public void addArticleVendu (ArticleVendu articleVendu) throws BusinessException 
 	{
-		if (articleVendu.getNoArticle() != null) 
-		{
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatBLL.ARTICLE_ALREADY_EXIST);
-			throw businessException;
-		}
-			avDAO.insertArticleVendu(articleVendu);
+		avDAO.insertArticleVendu(articleVendu);
 	}
 }
