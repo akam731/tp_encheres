@@ -1,5 +1,7 @@
 package fr.eni.eni_encheres.bll;
 
+import java.util.Date;
+
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.ArticleVendu;
 import fr.eni.eni_encheres.dal.ArticleVenduDAO;
@@ -24,8 +26,36 @@ public class ArticleVenduManager
 	}
 	
 	//Methode pour ajouter un article 
-	public void addArticleVendu (ArticleVendu articleVendu) throws BusinessException 
+	public ArticleVendu addArticleVendu (String nomArticle, String description, Date debutEncheres, Date finEncheres, int miseAPrix, int noUtilisateur, int noCategorie ) throws BusinessException 
 	{
-		avDAO.insertArticleVendu(articleVendu);
+
+		BusinessException businessException = new BusinessException();
+		ArticleVendu nouvelArticleVendu = null;
+		
+		if(!businessException.hasErreurs()) {
+			
+			
+			nouvelArticleVendu = new ArticleVendu();
+            nouvelArticleVendu.setNoCategorie(noCategorie);
+            nouvelArticleVendu.setNomArticle(nomArticle);
+            nouvelArticleVendu.setDescription(description);
+            nouvelArticleVendu.setDateDebutEncheres(debutEncheres);
+            nouvelArticleVendu.setDateFinEncheres(finEncheres);
+            nouvelArticleVendu.setMiseAPrix(miseAPrix);
+            nouvelArticleVendu.setNoUtilisateur(noUtilisateur);
+            
+            nouvelArticleVendu = avDAO.insertArticleVendu(nouvelArticleVendu);
+            
+            
+            
+		}else {
+			throw businessException;
+		}
+		return nouvelArticleVendu;
+		
 	}
 }
+
+
+
+

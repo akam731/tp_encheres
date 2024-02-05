@@ -40,11 +40,12 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	}
 	
 	@Override
-	public void insertArticleVendu (ArticleVendu articleVendu) throws BusinessException {
+	public ArticleVendu insertArticleVendu (ArticleVendu articleVendu) throws BusinessException {
 		
 		try(Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement ps=cnx.prepareStatement(INSERT_ARTICLEVENDUS,PreparedStatement.RETURN_GENERATED_KEYS);) 
 		{
+			try {
 				ps.setString(1, articleVendu.getNomArticle());
 		        ps.setString(2, articleVendu.getDescription());
 		        ps.setDate(3, (Date) articleVendu.getDateDebutEncheres());;	
@@ -54,10 +55,10 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		        ps.setInt(7, articleVendu.getNoCategorie());
 		        
 		        int nbRows = ps.executeUpdate();
-		        
+		        ResultSet rs = null;
 				if ( nbRows == 1 ) 
 				{
-	                ResultSet rs = ps.getGeneratedKeys();
+	                 rs = ps.getGeneratedKeys();
 
 	                if ( rs.next() )
 	                {
@@ -66,6 +67,12 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 
 	                rs.close();
 				}
+				return articleVendu;
+			}catch (Exception e) {
+				articleVendu.setNomArticle("ERREUR_WRONG_FORMAT");
+				return articleVendu;
+			}
+				
 			}
 		
 		catch (SQLException e) 
