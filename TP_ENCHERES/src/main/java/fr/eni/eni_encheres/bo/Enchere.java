@@ -1,6 +1,9 @@
 package fr.eni.eni_encheres.bo;
 
 import java.util.Date;
+import java.util.List;
+
+import org.apache.catalina.User;
 
 /**
  * Classe modélisant une enchère
@@ -82,6 +85,14 @@ public class Enchere {
 	public String toString() {
 		return "Enchere [noEnchere=" + noEnchere + ", montantEnchere=" + montantEnchere + ", dateEnchere=" + dateEnchere
 				+ ", noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + "]";
+	}
+
+	public static List<Enchere> getAllActiveEnchere() {
+		return null;
+	}
+
+	public static List<Enchere> getUserParticipatedEnchere(User currentUser) {
+		return null;
 	}
 	
 }
