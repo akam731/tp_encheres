@@ -36,8 +36,8 @@ import fr.eni.eni_encheres.bo.Utilisateur;
 
 @WebServlet("/VenteArticle")
 
-@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2 MB
-                 maxFileSize = 1024 * 1024 * 10,      // 10 MB
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 50, // 50 MB
+                 maxFileSize = 1024 * 1024 * 50,     // 50 MB
                  maxRequestSize = 1024 * 1024 * 50)   // 50 MB
 public class VenteArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -54,20 +54,17 @@ public class VenteArticle extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
-
+		/* Liste des catégories dynamiques (@author Amélie DUCASSE) */
+        CategorieManager catManager;
+        try {
+            catManager = new CategorieManager();
+            List<Categorie> listeCategories = catManager.getListeCategorie();
+            request.setAttribute("categories", listeCategories);
+        } catch (BusinessException e1) {
+            e1.printStackTrace();
+        }
 
 		HttpSession session = request.getSession();
-		
-		/* Liste des catégories dynamiques */
-		CategorieManager catManager;
-		try {
-			catManager = new CategorieManager();
-			List<Categorie> listeCategories = catManager.getListeCategorie();
-			request.setAttribute("categories", listeCategories);
-		} catch (BusinessException e1) {
-			e1.printStackTrace();
-		}
 		
 		// Auto - Connexion par Cookies
 		Cookie[] cookies = request.getCookies();
@@ -130,14 +127,22 @@ public class VenteArticle extends HttpServlet {
 				rd.forward(request, response);	
 			}
 		}
-		
-		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		/* Liste des catégories dynamiques (@author Amélie DUCASSE) */
+        CategorieManager catManager;
+        try {
+            catManager = new CategorieManager();
+            List<Categorie> listeCategories = catManager.getListeCategorie();
+            request.setAttribute("categories", listeCategories);
+        } catch (BusinessException e1) {
+            e1.printStackTrace();
+        }
+        
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 		
@@ -156,7 +161,7 @@ public class VenteArticle extends HttpServlet {
         {
         	nomArticle = request.getParameter("nomArticle");
         	description = request.getParameter("description");
-        	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
+        	noCategorie = Integer.parseInt(request.getParameter("categorie"));
         	miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));	
         
 
@@ -169,7 +174,7 @@ public class VenteArticle extends HttpServlet {
 			String fileExtension = "";
 			int dotIndex = originalFileName.lastIndexOf('.');
 			if (dotIndex > 0) {
-			    fileExtension = originalFileName.substring(dotIndex);
+			    fileExtension = originalFileName.substring(dotIndex).toLowerCase();
 			}
 			
 			
@@ -183,8 +188,6 @@ public class VenteArticle extends HttpServlet {
         	rue = request.getParameter("rue");
         	codePostal = request.getParameter("codePostal");
         	ville = request.getParameter("ville");
-        	
-        	System.out.println(originalFileName);
         	
         	if (!"".equals(originalFileName)) {
 
@@ -200,8 +203,6 @@ public class VenteArticle extends HttpServlet {
     				if(fileExtension.equals(extension)) {
     					isExtensionAccepted = true;
     				}
-        			
-        			System.out.println(extension + " " + fileExtension);
     			}
     			
     			if (!isExtensionAccepted) {
@@ -210,6 +211,20 @@ public class VenteArticle extends HttpServlet {
 					rd.forward(request, response);
 	        		return;
 				}
+    			
+    			// Récupérer la taille de l'image
+    			long imageSize = part.getSize();
+
+    			// Convertir la taille maximale autorisée en octets (dans votre cas, 50 Mo)
+    			long maxSizeInBytes = 1024 * 1024 * 50;
+
+    			// Vérifier si la taille de l'image dépasse la limite maximale
+    			if (imageSize > maxSizeInBytes) {
+    			    request.setAttribute("errorArticle", "La taille de l'image dépasse la limite maximale autorisée (50 Mo) !");
+    			    RequestDispatcher rd = request.getRequestDispatcher("/jsp/AfficherVenteArticle.jsp");
+    			    rd.forward(request, response);
+    			    return;
+    			}
 
     			isImg = true;
         	}
@@ -295,15 +310,11 @@ public class VenteArticle extends HttpServlet {
           
 
         }
-//Gestion exceptions
+      
         catch(BusinessException e) 
         {
         	e.printStackTrace();
         }
         
-
+	}
 }  		
-      
-        
-
-	}   

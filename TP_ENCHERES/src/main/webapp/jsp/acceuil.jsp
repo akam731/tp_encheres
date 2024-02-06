@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="fr.eni.eni_encheres.bo.Categorie" %>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="fr.eni.eni_encheres.bo.ArticleVendu" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,11 +46,11 @@
     <h1>Liste des enchères</h1>
 
     <h3>Filtres</h3>
-    <form>
+    <form method="post" action="/TP_ENCHERES/acceuil">
     	<div class="form_flex">
     		<div class="recherche">
     			<div class="img_loupe">
-    				<img id="loupe" src="../images/loupe.png">
+    				<img id="loupe" src="images/loupe.png">
     			</div>
     			<input id="barre_recherche" type="text" name="rechercher" placeholder="Le nom de l'article contient">
     		</div>
@@ -61,48 +63,47 @@
     	<input class="rechercher_bouton" type="submit" name="rechercher" value="Rechercher">
     </form>
 
-    <section class="afficher_encheres">
-    	
-    	<a href="" class="enchere">
-    		
-    		<img src="fff">
 
-    		<div class="enchere_context">
-    			
-    			<p class="enchere_nom">PC GAMER pour travailler</p>
-    			<p class="enchere_prix">Prix : 210 points</p>
-    			<p class="enchere_date">Fin de l'enchère : 10/08/2018</p>
-    			<p class="enchere_vendeur">Vendeur : jojo44</p>
-    		</div>
+       <section class="afficher_encheres">
+        <%
+            Map<String, String> dicUser = (HashMap<String, String>) request.getAttribute("dicUser");
+       		Map<String, String> articlesImg = (HashMap<String, String>) request.getAttribute("articlesImg");
 
-    	</a>    	
-    	<a href="" class="enchere">
-    		
-    		<img src="fff">
+            if (dicUser != null) {
+                List<ArticleVendu> liste = (List<ArticleVendu>) request.getAttribute("liste");
+                if (liste != null && !liste.isEmpty()) {
+                    for (ArticleVendu article : liste) {
+        %>
+                        <a href="" class="enchere">
+                            <img src="<%= articlesImg.get(String.valueOf(article.getNoArticle())) %>">
 
-    		<div class="enchere_context">
-    			
-    			<p class="enchere_nom">PC GAMER pour travailler</p>
-    			<p class="enchere_prix">Prix : 210 points</p>
-    			<p class="enchere_date">Fin de l'enchère : 10/08/2018</p>
-    			<p class="enchere_vendeur">Vendeur : jojo44</p>
-    		</div>
+                            <div class="enchere_context">
 
-    	</a>	
-    	<a href="" class="enchere">
-    		
-    		<img src="fff">
+                                <p class="enchere_nom"><%= article.getNomArticle() %></p>
+                                <p class="enchere_prix">Prix : 
+                                    <% if (article.getPrixVente() >= article.getMiseAPrix()) { %>
+                                        <%= article.getPrixVente() %>
+                                    <% } else { %>
+                                        <%= article.getMiseAPrix() %>
+                                    <% } %>
+                                    points
+                                </p>
+                                <p class="enchere_date">Fin de l'enchère : <%= article.getDateFinEncheres() %></p>
 
-    		<div class="enchere_context">
-    			
-    			<p class="enchere_nom">PC GAMER pour travailler</p>
-    			<p class="enchere_prix">Prix : 210 points</p>
-    			<p class="enchere_date">Fin de l'enchère : 10/08/2018</p>
-    			<p class="enchere_vendeur">Vendeur : jojo44</p>
-    		</div>
+                                <p class="enchere_vendeur">Vendeur : <%= dicUser.get(String.valueOf(article.getNoUtilisateur())) %></p>
 
-    	</a>
+                            </div>
 
+                        </a>
+        <%
+                    }
+                } else {
+        %>
+                    <p>Il n'y a aucune enchères en cours !</p>
+        <%
+                }
+            }
+        %>
     </section>
 
 </body>
