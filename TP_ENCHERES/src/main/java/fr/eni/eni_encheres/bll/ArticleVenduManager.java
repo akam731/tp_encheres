@@ -1,6 +1,7 @@
 package fr.eni.eni_encheres.bll;
 
 import java.util.Date;
+import java.util.List;
 
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bo.ArticleVendu;
@@ -14,6 +15,11 @@ public class ArticleVenduManager
 	
 	private static ArticleVenduDAO avDAO;
 	
+	public List<ArticleVendu> selectAllArticleVendu() throws BusinessException {
+	    List<ArticleVendu> liste = avDAO.selectAllArticleVendu();
+	    return liste;
+	}
+	
 	public void updateArticleDeteletedUtilisateur(int idUser) throws BusinessException{
 		
 		avDAO.updateArticleDeteletedUtilisateur(idUser);
@@ -24,8 +30,7 @@ public class ArticleVenduManager
 	{
 		avDAO=DAOFactory.getArticleVenduDAO();
 	}
-	
-	//Methode pour ajouter un article 
+
 	public ArticleVendu addArticleVendu (String nomArticle, String description, Date debutEncheres, Date finEncheres, int miseAPrix, int noUtilisateur, int noCategorie ) throws BusinessException 
 	{
 

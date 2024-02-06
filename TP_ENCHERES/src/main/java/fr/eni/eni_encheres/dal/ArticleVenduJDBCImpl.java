@@ -18,7 +18,7 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	
 	private final String INSERT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String SELECT_ARTICLEVENDUS="SELECT INTO ARTICLE_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_vente, prix_initial, no_utilisateur, no_categorie) FROM ARTICLE_VENDUS";
+	private static final String SELECT_ARTICLEVENDUS="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_vente, prix_initial, no_utilisateur, no_categorie FROM ARTICLES_VENDUS";
 	private static final String SELECT_ARTICLEVENDUS_BY_ID="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLE_VENDUS WHERE no_article=?";
 	private static final String UPDATE_ARTICLEVENDUS="UPDATE ARTICLE_VENDU SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=? WHERE no_article=?";
 	private static final String DELETE_ARTICLEVENDUS="DELETE FROM ARTICLE_VENDU WHERE no_article=?";
@@ -97,7 +97,8 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 			{
 				ArticleVendu art = new ArticleVendu
 					(
-						rs.getString( "nomArticle" ), 
+						rs.getInt("no_article"), 
+						rs.getString( "nom_article" ), 
 						rs.getString( "description" ), 
 						rs.getDate("date_debut_encheres"), 
 						rs.getDate("date_fin_encheres"), 
