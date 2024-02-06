@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="fr.eni.eni_encheres.bo.Categorie" %>
+<%@ page import="java.util.List"%>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/venteArticle.css">
@@ -19,9 +21,7 @@
 		</div>
 		<br>	
 		<label class="label_bottom" for="category">Catégorie :</label>
-		<select id="libelle" name="noCategorie" required>
-			<option value="1">Mobilier</option>
-		</select>
+		<%@ include file="/jsp/fragmentListeCategorie.jsp" %>
 		<br>
 		<br>
 		<label class="label_bottom" for="image">Photo de l'article :</label>

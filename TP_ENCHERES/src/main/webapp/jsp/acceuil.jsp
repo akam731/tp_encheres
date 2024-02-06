@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="fr.eni.eni_encheres.bo.Categorie" %>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,13 +54,7 @@
     		</div>
     		<div class="categories">
     			<label>Categorie :</label>
-    			<select>
-    				<option value="toutes" selected>Toutes</option>
-    				<option value="info">Informatique</option>
-    				<option>Ameublement</option>
-    				<option value="vetements">Vêtements</option>
-    				<option value="sport">Sport et Loisirs</option>
-    			</select>
+				<%@ include file="/jsp/fragmentListeCategorie.jsp" %>
     		</div>
     	</div>
 

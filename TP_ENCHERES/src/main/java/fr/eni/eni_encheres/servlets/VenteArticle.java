@@ -25,9 +25,11 @@ import javax.servlet.http.Part;
 
 import fr.eni.eni_encheres.BusinessException;
 import fr.eni.eni_encheres.bll.ArticleVenduManager;
+import fr.eni.eni_encheres.bll.CategorieManager;
 import fr.eni.eni_encheres.bll.EniEnchereManager;
 import fr.eni.eni_encheres.bll.RetraitManager;
 import fr.eni.eni_encheres.bo.ArticleVendu;
+import fr.eni.eni_encheres.bo.Categorie;
 import fr.eni.eni_encheres.bo.Retrait;
 import fr.eni.eni_encheres.bo.Utilisateur;
 
@@ -56,6 +58,16 @@ public class VenteArticle extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
+		
+		/* Liste des catégories dynamiques */
+		CategorieManager catManager;
+		try {
+			catManager = new CategorieManager();
+			List<Categorie> listeCategories = catManager.getListeCategorie();
+			request.setAttribute("categories", listeCategories);
+		} catch (BusinessException e1) {
+			e1.printStackTrace();
+		}
 		
 		// Auto - Connexion par Cookies
 		Cookie[] cookies = request.getCookies();
@@ -118,6 +130,8 @@ public class VenteArticle extends HttpServlet {
 				rd.forward(request, response);	
 			}
 		}
+		
+		
 	}
 	
 	

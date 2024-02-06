@@ -2,6 +2,7 @@ package fr.eni.eni_encheres.servlets;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eni_encheres.BusinessException;
+import fr.eni.eni_encheres.bll.CategorieManager;
 import fr.eni.eni_encheres.bll.EniEnchereManager;
+import fr.eni.eni_encheres.bo.Categorie;
 import fr.eni.eni_encheres.bo.Utilisateur;
 
 @WebServlet("/acceuil")
@@ -22,6 +25,16 @@ public class acceuil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		/* Liste des catégories dynamiques */
+		CategorieManager catManager;
+		try {
+			catManager = new CategorieManager();
+			List<Categorie> listeCategories = catManager.getListeCategorie();
+			request.setAttribute("categories", listeCategories);
+		} catch (BusinessException e1) {
+			e1.printStackTrace();
+		}
 		
 		if(session.getAttribute("pseudo") == null) {
 			// Auto - Connexion par Cookies
@@ -81,10 +94,6 @@ public class acceuil extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/jsp/acceuil.jsp");
 			rd.forward(request, response);
 		}
-		
-		
-		
-		
 		
 	}
 
