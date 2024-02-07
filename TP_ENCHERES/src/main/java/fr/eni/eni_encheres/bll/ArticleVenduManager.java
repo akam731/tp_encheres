@@ -15,9 +15,18 @@ public class ArticleVenduManager
 	
 	private static ArticleVenduDAO avDAO;
 	
+	public ArticleVendu selectArticleVenduById(int id) throws BusinessException{
+		ArticleVendu article = avDAO.selectArticleVenduById(id);
+		return article;
+	}
+	
 	public List<ArticleVendu> selectAllArticleVendu() throws BusinessException {
 	    List<ArticleVendu> liste = avDAO.selectAllArticleVendu();
 	    return liste;
+	}
+	
+	public void updateArticleVendu(ArticleVendu article) throws BusinessException {
+		avDAO.updateArticleVendu(article);
 	}
 	
 	public void updateArticleDeteletedUtilisateur(int idUser) throws BusinessException{

@@ -46,7 +46,7 @@ public class connexion extends HttpServlet {
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					
@@ -98,7 +98,7 @@ public class connexion extends HttpServlet {
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", pseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(pseudo);
 				
 				if(motDePasse.equals(utilisateur.getMotDePasse())) {
 					

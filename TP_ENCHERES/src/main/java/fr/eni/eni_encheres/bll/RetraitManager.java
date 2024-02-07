@@ -13,6 +13,23 @@ public class RetraitManager {
 		RetraitManager.retraitDAO = (RetraitDAO) DAOFactory.getRetraitDAO();
 	}
 	
+
+	public Retrait selectRetraitById(int noRetrait) throws BusinessException {
+	
+		BusinessException business = new BusinessException();
+		
+		Retrait retrait = new Retrait();
+		
+		if(!business.hasErreurs()) {
+			retrait = retraitDAO.selectRetraitById(noRetrait);
+		}else {
+			throw business;
+		}
+        
+        return retrait;
+		
+	}
+	
 	public Retrait insertRetrait(int noArticle, String rue, String codePostal, String ville) throws BusinessException {
 		
 		BusinessException business = new BusinessException();

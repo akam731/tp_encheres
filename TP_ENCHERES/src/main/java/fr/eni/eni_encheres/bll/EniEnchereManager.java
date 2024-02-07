@@ -57,7 +57,7 @@ public class EniEnchereManager {
 		
 	}
 	
-	public Utilisateur getUserBy(String colonne, String value) throws BusinessException{
+	public Utilisateur getUserByPseudo(String pseudo) throws BusinessException{
 		
 		BusinessException businessException = new BusinessException();
 		
@@ -65,7 +65,7 @@ public class EniEnchereManager {
 		
 		if(!businessException.hasErreurs()) {
 			
-			utilisateur = this.enchereDAO.getUserBy(colonne, value);
+			utilisateur = this.enchereDAO.getUserByPseudo(pseudo);
 			
 		}else {
 			throw businessException;
@@ -73,8 +73,28 @@ public class EniEnchereManager {
 		return utilisateur;
 	}
 	
-	public Boolean isColloneExiste(String collone, String value) throws BusinessException{
-		return this.enchereDAO.isColloneExiste(collone, value);
+	public Utilisateur getUserById(int id) throws BusinessException{
+		
+		BusinessException businessException = new BusinessException();
+		
+		Utilisateur utilisateur = null;
+		
+		if(!businessException.hasErreurs()) {
+			
+			utilisateur = this.enchereDAO.getUserById(id);
+			
+		}else {
+			throw businessException;
+		}
+		return utilisateur;
+	}
+	
+	public Boolean isPseudoExiste(String pseudo) throws BusinessException{
+		return this.enchereDAO.isPseudoExiste(pseudo);
+	}
+	
+	public Boolean isEmailExiste(String email) throws BusinessException{
+		return this.enchereDAO.isEmailExiste(email);
 	}
 	
 	public Utilisateur setNewUser(String pseudo,String nom,String prenom,String mail,String tel,String rue,String codePostal,String ville,String motDePasse) throws BusinessException {

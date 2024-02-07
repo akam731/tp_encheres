@@ -12,6 +12,7 @@ import fr.eni.eni_encheres.bo.Retrait;
 public class RetraitDAOJdbcImpl implements RetraitDAO{
 	
 	private static final String INSERT_RETRAIT =  "INSERT INTO RETRAITS (no_article, rue, code_postal, ville) VALUES (?, ?, ?, ?)";
+    private static final String SELECT_RETRAIT_BY_ID = "SELECT no_article, rue, code_postal, ville FROM RETRAITS WHERE no_article = ?";
 	
 	@Override
 	public Retrait insertRetrait(Retrait retrait) throws BusinessException {
@@ -59,7 +60,28 @@ public class RetraitDAOJdbcImpl implements RetraitDAO{
 
 	@Override
 	public Retrait selectRetraitById(int noRetrait) throws BusinessException {
-		return null;
+
+        Retrait retrait = null;
+        
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			
+			PreparedStatement statement = cnx.prepareStatement(SELECT_RETRAIT_BY_ID);
+            statement.setInt(1, noRetrait);
+            ResultSet rs = statement.executeQuery();
+            
+            if (rs.next()) {
+                String rue = rs.getString("rue");
+                String codePostal = rs.getString("code_postal");
+                String ville = rs.getString("ville");
+                
+                retrait = new Retrait(noRetrait, rue, codePostal, ville);
+            }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return retrait;
 	}
 
 	@Override

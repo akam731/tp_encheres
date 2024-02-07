@@ -73,10 +73,10 @@
                 if (liste != null && !liste.isEmpty()) {
                     for (ArticleVendu article : liste) {
         %>
-                        <a href="" class="enchere">
+                        <a href="detailVente?id=<%= article.getNoArticle() %>" class="enchere">
                             <img src="<%= articlesImg.get(String.valueOf(article.getNoArticle())) %>">
 
-                            <div class="enchere_context">
+                            <div class="enchere_context"">
 
                                 <p class="enchere_nom"><%= article.getNomArticle() %></p>
                                 <p class="enchere_prix">Prix : 

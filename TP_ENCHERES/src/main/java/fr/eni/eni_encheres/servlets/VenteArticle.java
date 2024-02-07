@@ -91,7 +91,7 @@ public class VenteArticle extends HttpServlet {
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					
@@ -108,8 +108,7 @@ public class VenteArticle extends HttpServlet {
 					session.setAttribute("mdp", utilisateur.getMotDePasse());
 					session.setAttribute("admin", utilisateur.isAdministrateur());
 					session.setAttribute("credits", utilisateur.getCredit());
-					
-					response.sendRedirect("acceuil");
+
 					
 				}else {
 					if(session.getAttribute("pseudo") == null) {

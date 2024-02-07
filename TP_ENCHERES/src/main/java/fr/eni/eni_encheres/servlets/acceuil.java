@@ -67,7 +67,7 @@ public class acceuil extends HttpServlet {
 				EniEnchereManager user = new EniEnchereManager();
 				try {
 					
-					Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+					Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 					
 					if(userMdp.equals(utilisateur.getMotDePasse())) {
 						
@@ -108,7 +108,7 @@ public class acceuil extends HttpServlet {
 				
 				for (ArticleVendu article : listesArticles) {
 				    
-				    Utilisateur user = utilisateurDAO.getUserBy("no_utilisateur", String.valueOf(article.getNoUtilisateur())); 
+				    Utilisateur user = utilisateurDAO.getUserById(article.getNoUtilisateur()); 
 				    dicUser.put(String.valueOf(article.getNoUtilisateur()), String.valueOf(user.getPseudo()));
 				    
 				    String articleId = String.valueOf(article.getNoArticle());
@@ -208,7 +208,7 @@ public class acceuil extends HttpServlet {
 			    
 			    Utilisateur user = null;
 				try {
-					user = utilisateurDAO.getUserBy("no_utilisateur", String.valueOf(article.getNoUtilisateur()));
+					user = utilisateurDAO.getUserById(article.getNoUtilisateur());
 				} catch (BusinessException e) {
 					e.printStackTrace();
 				} 
