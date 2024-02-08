@@ -53,9 +53,11 @@
 			<label class="retrait_label" for="ville">Ville :</label>
 			<input  maxlength="30" class="retrait_input" type="text" id="ville" name="ville" value="" required>
 		</fieldset>
-		<input type="submit" id="enregistrer" name="enregistrer" value="Enregistrer">
-		<input type="submit" id="annuler" name="annuler" value="Annuler">
-		<input type="submit" id="annulerVente" name="annulerVente" value="Annuler la vente">
+		<div class="submits">
+			<input type="submit" id="enregistrer" name="enregistrer" value="Enregistrer">
+			<a id="annuler" href="acceuil">Annuler</a>
+		</div>
+		<!--<input type="submit" id="annulerVente" name="annulerVente" value="Annuler la vente">-->
 	</form>
     <div id="erreur"
     <%	String erreur = null;
@@ -70,4 +72,6 @@
         <p><%= erreur %></p>
     </div>
 </body>
-</html>			
+</html>
+<br>
+<br>			

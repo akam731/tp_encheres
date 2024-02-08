@@ -13,7 +13,14 @@ public class RetraitManager {
 		RetraitManager.retraitDAO = (RetraitDAO) DAOFactory.getRetraitDAO();
 	}
 	
+	public void updateRetraitById(Retrait retrait) throws BusinessException{
+		retraitDAO.updateRetrait(retrait);
+	}
 
+	public void deleteRetrait(int id) throws BusinessException{
+		retraitDAO.deleteRetrait(id);
+	}
+	
 	public Retrait selectRetraitById(int noRetrait) throws BusinessException {
 	
 		BusinessException business = new BusinessException();

@@ -155,7 +155,7 @@ public class VenteArticle extends HttpServlet {
         {
         	nomArticle = request.getParameter("nomArticle");
         	description = request.getParameter("description");
-        	noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
+        	noCategorie = Integer.parseInt(request.getParameter("categorie"));
         	miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));	
         
 
@@ -168,7 +168,7 @@ public class VenteArticle extends HttpServlet {
 			String fileExtension = "";
 			int dotIndex = originalFileName.lastIndexOf('.');
 			if (dotIndex > 0) {
-			    fileExtension = originalFileName.substring(dotIndex);
+			    fileExtension = originalFileName.substring(dotIndex).toLowerCase();
 			}
 			
 			
@@ -182,8 +182,6 @@ public class VenteArticle extends HttpServlet {
         	rue = request.getParameter("rue");
         	codePostal = request.getParameter("codePostal");
         	ville = request.getParameter("ville");
-        	
-        	System.out.println(originalFileName);
         	
         	if (!"".equals(originalFileName)) {
 
@@ -199,8 +197,6 @@ public class VenteArticle extends HttpServlet {
     				if(fileExtension.equals(extension)) {
     					isExtensionAccepted = true;
     				}
-        			
-        			System.out.println(extension + " " + fileExtension);
     			}
     			
     			if (!isExtensionAccepted) {

@@ -33,7 +33,6 @@ public class acceuil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		/* Liste des catégories dynamiques (@author Amélie DUCASSE) */
         CategorieManager catManager;
         try {
             catManager = new CategorieManager();

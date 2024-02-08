@@ -35,6 +35,10 @@ public class ArticleVenduManager
 		
 	}
 	
+	public void deleteArticleVendu(int id) throws BusinessException{
+		avDAO.deleteArticleVendu(id);
+	}
+	
 	public ArticleVenduManager() 
 	{
 		avDAO=DAOFactory.getArticleVenduDAO();

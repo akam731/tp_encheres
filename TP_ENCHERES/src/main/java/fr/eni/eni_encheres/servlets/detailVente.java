@@ -43,6 +43,8 @@ public class detailVente extends HttpServlet {
 		
 		String articleId = request.getParameter("id");
 
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
 		
 		if(articleId != null) {
 			int Id = 0;
@@ -68,9 +70,11 @@ public class detailVente extends HttpServlet {
     		        File file = new File("C:\\Users\\alexa\\OneDrive\\Documents\\Formation\\ENI\\Git\\tp_encheres\\TP_ENCHERES\\src\\main\\webapp\\img_encheres\\" + articleId + extension);
     				if(file.exists()) {
     					request.setAttribute("articleImg","img_encheres/" + articleId + extension);
+    					session.setAttribute("articleImg","img_encheres/" + articleId + extension);
     					break;
     				}else {
     					request.setAttribute("articleImg","img_encheres/default.jpg");
+    					session.setAttribute("articleImg","img_encheres/default.jpg");
     				}
     			}
     			
@@ -97,6 +101,7 @@ public class detailVente extends HttpServlet {
     			Utilisateur vendeur = userDAO.getUserById(article.getNoUtilisateur());
     			
     			request.setAttribute("articleSeller", vendeur);
+    			session.setAttribute("articleSeller", vendeur);
     			
     			//Récuperer la dernière enchère
     			EncheresArticleManager enchereDAO = new EncheresArticleManager();
@@ -116,6 +121,14 @@ public class detailVente extends HttpServlet {
     			
 				request.setAttribute("article", article);
 				session.setAttribute("articleDetail", article);
+				
+    			if(session.getAttribute("noUtilisateur") != null && vendeur.getNoUtilisateur() == (int)session.getAttribute("noUtilisateur")) {
+    				
+    				if(date.before(article.getDateDebutEncheres())) {
+	    				response.sendRedirect("modificationEnchere?id=" + Id);
+	    				return;
+    				}
+    			}
 			}catch (Exception e) {
 				response.sendRedirect("acceuil");
 				return;
@@ -205,6 +218,10 @@ public class detailVente extends HttpServlet {
 
 						LocalDate localDate = LocalDate.now();
 						Date date = Date.valueOf(localDate);
+						/*
+				        java.util.Date utilDate = new java.util.Date();
+				        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+				        */
 						if(derniereEnchere.getNo_Article() != -1) {
 
 							//Remboursement de l'ancien encherisseur
