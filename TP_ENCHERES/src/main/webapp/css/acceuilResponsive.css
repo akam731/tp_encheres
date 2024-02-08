@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Media Queries pour les appareils mobiles */
+@media only screen and (max-width: 600px) {
+	
+    /* Réduire la taille de la police pour les titres */
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    /* Centrer le contenu de la page */
+    body {
+        text-align: center;
+    }
+
+    /* Modifier la disposition des éléments dans la barre de navigation */
+    .acceuil_header nav {
+        display: block;
+    }
+
+    .acceuil_header nav a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Modifier la mise en page des enchères */
+    .afficher_encheres {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .enchere {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    /* Redimensionner les images des enchères */
+    .enchere img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Ajuster la taille des éléments de texte dans les enchères */
+    .enchere_context p {
+        font-size: 14px;
+    }
+
+}

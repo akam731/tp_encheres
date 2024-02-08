@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil Utilisateur</title>
+<link href="css/profilUtilisateurResponsive.css" rel="stylesheet">
 </head>
 <body>
 	<h1>Profil de <%= request.getAttribute("") %></h1>

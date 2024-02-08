@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Titre */
+h1 {
+    text-align: center;
+}
+
+/* Paragraphe */
+p {
+    margin: 10px;
+}

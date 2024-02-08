@@ -1,0 +1,69 @@
+@charset "UTF-8";
+	/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* En-tête */
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+
+/* Formulaire d'inscription */
+form {
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+}
+
+form h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Boutons Créer et Annuler */
+#creer,
+#annuler {
+    width: 45%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#creer:hover,
+#annuler:hover {
+    background-color: #0056b3;
+}
+
+/* Message d'erreur */
+#erreur p {
+    color: red;
+    margin: 0;
+    display: none;
+}

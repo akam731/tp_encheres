@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Enchères | Connexion</title>
     <link href="css/connexion.css" rel="stylesheet">
+    <link href="css/connexionResponsive.css" rel="stylesheet">
 </head>
 <body>
     <h2><a href="acceuil"> ENI - Enchères </a></h2>

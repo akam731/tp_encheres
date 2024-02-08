@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Acceuil</title>
 	<link href="css/acceuil.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/acceuilResponsive.css">
 </head>
 <body>
 	<header class="acceuil_header">

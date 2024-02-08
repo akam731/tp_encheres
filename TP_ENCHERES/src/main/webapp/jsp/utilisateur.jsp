@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Enchères | Profil</title>
     <link href="css/utilisateur.css" rel="stylesheet">
+    <link href="css/utilisateurResponsive.css" rel="stylesheet">
 </head>
 <body>
     <h2><a href="acceuil"> ENI - Enchères </a></h2>

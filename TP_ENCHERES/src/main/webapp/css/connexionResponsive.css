@@ -1,0 +1,83 @@
+@charset "UTF-8";
+	/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* En-tête */
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+
+/* Formulaire de connexion */
+form {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 20px;
+}
+
+form h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Bouton de connexion */
+#connexion {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#connexion:hover {
+    background-color: #0056b3;
+}
+
+/* Liens "Se souvenir de moi" et "Mot de passe oublié" */
+.souvenir_oublié {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.souvenir {
+    display: flex;
+    align-items: center;
+}
+
+#souvenir {
+    margin-right: 5px;
+}
+
+/* Liens "Inscription" et message d'erreur */
+.button,
+#erreur {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Message d'erreur */
+#erreur p {
+    color: red;
+    margin: 0;
+    display: none;
+}
