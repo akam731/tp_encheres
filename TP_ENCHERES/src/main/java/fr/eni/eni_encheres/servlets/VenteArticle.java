@@ -59,7 +59,6 @@ public class VenteArticle extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		/* Liste des catégories dynamiques */
 		CategorieManager catManager;
 		try {
 			catManager = new CategorieManager();
@@ -137,6 +136,15 @@ public class VenteArticle extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		CategorieManager catManager;
+		try {
+			catManager = new CategorieManager();
+			List<Categorie> listeCategories = catManager.getListeCategorie();
+			request.setAttribute("categories", listeCategories);
+		} catch (BusinessException e1) {
+			e1.printStackTrace();
+		}
+		
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 		

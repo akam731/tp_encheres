@@ -33,6 +33,9 @@ public class acceuil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+        
         CategorieManager catManager;
         try {
             catManager = new CategorieManager();
@@ -104,9 +107,16 @@ public class acceuil extends HttpServlet {
 			try {
 				listesArticles = articleDAO.selectAllArticleVendu();
 				
-				
-				for (ArticleVendu article : listesArticles) {
-				    
+				Iterator<ArticleVendu> iterator = listesArticles.iterator();
+				while (iterator.hasNext()) {
+				    ArticleVendu article = iterator.next();
+				    System.out.println();
+				    if(article.getDateFinEncheres().before(date) || article.getDateFinEncheres().equals(date)) {
+				        article.setEtatVente(true);
+				        iterator.remove();
+				    }
+					
+					
 				    Utilisateur user = utilisateurDAO.getUserById(article.getNoUtilisateur()); 
 				    dicUser.put(String.valueOf(article.getNoUtilisateur()), String.valueOf(user.getPseudo()));
 				    
@@ -132,7 +142,6 @@ public class acceuil extends HttpServlet {
 	    					articlesImg.put(String.valueOf(article.getNoArticle()), "img_encheres/default.jpg");
 	    				}
 	    			}
-				    
 				}
 				
 			} catch (BusinessException e) {
