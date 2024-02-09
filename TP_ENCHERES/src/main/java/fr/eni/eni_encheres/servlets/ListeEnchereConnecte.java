@@ -35,7 +35,7 @@ public class ListeEnchereConnecte extends HttpServlet {
         request.setAttribute("activeEnchere", activeEnchere);
         request.setAttribute("userParticipatedEnchere", userParticipatedEnchere);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/enchere.jsp"); 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/ListeEnchereConnecte.jsp"); 
         dispatcher.forward(request, response);
     }
 }

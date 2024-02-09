@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ENI - Enchères | Enchère</title>
 	<link rel="stylesheet" type="text/css" href="css/detailVente.css">
-	<link rel="stylesheet" type="text/css" href="css/detailVenteResponsive.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/detailVenteResponsive.css">-->
 </head>
 <body>
 <h2><a href="acceuil">ENI - Enchères</a></h2>
@@ -40,10 +40,10 @@
 			<p><%= request.getAttribute("articleCategoryName") %></p>	
 			<br>
 			<label>Meilleur offre :</label>
-			<p><%= article.getPrixVente()%> crédits.</p>
+			<p><%= article.getPrixVente()%> points.</p>
 			<br>
 			<label>Mise à prix :</label>
-			<p><%= article.getMiseAPrix() %> crédits</p>
+			<p><%= article.getMiseAPrix() %> points</p>
 			<br>
 			<label>Fin de l'enchère :</label>
 			<p><%= article.getDateFinEncheres() %></p>

@@ -268,8 +268,10 @@ public class modificationEnchere extends HttpServlet {
 				            			String fileName = fixedFileName + fileExtension;
 
 				            			// Spécifiez le chemin absolu du répertoire en dehors du Workspace
+				            			
 				            			String uploadPath = "C:\\Users\\alexa\\OneDrive\\Documents\\Formation\\ENI\\Git\\tp_encheres\\TP_ENCHERES\\src\\main\\webapp\\img_encheres";
-        								Path test1 = Paths.get(uploadPath+ "\\" + nouvelArticleVendu.getNoArticle()+".jpg");
+        								
+				            			Path test1 = Paths.get(uploadPath+ "\\" + nouvelArticleVendu.getNoArticle()+".jpg");
         								File fileTest1 = new File(uploadPath+ "\\" + nouvelArticleVendu.getNoArticle()+".jpg");
         								Path test2 = Paths.get(uploadPath+ "\\" + nouvelArticleVendu.getNoArticle()+".png");    
         								File fileTest2 = new File(uploadPath+ "\\" + nouvelArticleVendu.getNoArticle()+".png");

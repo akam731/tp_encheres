@@ -266,10 +266,7 @@ public class VenteArticle extends HttpServlet {
 			                        
 			                        
 			            		}catch (Exception e) {
-			            			
-			            			System.out.println("non");
 			            			e.printStackTrace();
-			            		
 								}
 		            		}
 			            	

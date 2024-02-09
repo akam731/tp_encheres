@@ -110,7 +110,6 @@ public class acceuil extends HttpServlet {
 				Iterator<ArticleVendu> iterator = listesArticles.iterator();
 				while (iterator.hasNext()) {
 				    ArticleVendu article = iterator.next();
-				    System.out.println();
 				    if(article.getDateFinEncheres().before(date) || article.getDateFinEncheres().equals(date)) {
 				        article.setEtatVente(true);
 				        iterator.remove();

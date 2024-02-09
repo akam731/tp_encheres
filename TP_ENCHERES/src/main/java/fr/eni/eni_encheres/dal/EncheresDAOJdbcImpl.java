@@ -167,7 +167,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			
 			try (PreparedStatement pstmt = cnx.prepareStatement(IS_EMAIL_EXISTE)){
 				pstmt.setString(1, email);
-				try(ResultSet rs = pstmt.executeQuery();){
+				try(ResultSet rs = pstmt.executeQuery()){
 					if(rs.next()) {
 						
 						return rs.getInt(1) > 0;

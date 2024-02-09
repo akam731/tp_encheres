@@ -5,7 +5,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/venteArticle.css">
-	<link rel="stylesheet" type="text/css" href="css/venteArticleResponsive.css">
+<!--	<link rel="stylesheet" type="text/css" href="css/venteArticleResponsive.css"> -->
 	<title>ENI - Enchères | Mettre en vente</title>
 </head>
 <body>
@@ -44,15 +44,15 @@
 		<fieldset>
 			<legend>Retrait</legend>
 			<label class="retrait_label" for="rue">Rue :</label>
-			<input  maxlength="30" class="retrait_input" type="text" id="rue" name="rue" value="" required>
+			<input  maxlength="30" class="retrait_input" type="text" id="rue" name="rue" value="${rue}" required>
 			<br>
 			<br>
 			<label class="retrait_label" for="codePostal">Code Postal :</label>
-			<input  maxlength="15" class="retrait_input" type="text" id="codePostal" name="codePostal" value="" required>
+			<input  maxlength="15" class="retrait_input" type="text" id="codePostal" name="codePostal" value="${codePostal }" required>
 			<br>
 			<br>
 			<label class="retrait_label" for="ville">Ville :</label>
-			<input  maxlength="30" class="retrait_input" type="text" id="ville" name="ville" value="" required>
+			<input  maxlength="30" class="retrait_input" type="text" id="ville" name="ville" value="${ville }" required>
 		</fieldset>
 		<div class="submits">
 			<input type="submit" id="enregistrer" name="enregistrer" value="Enregistrer">

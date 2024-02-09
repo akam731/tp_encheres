@@ -145,8 +145,8 @@ public class modificationUtilisateur extends HttpServlet {
 				try {
 				if(motDePasse.equals(session.getAttribute("mdp"))) {
 					
-					if(!dao.isColloneExiste("pseudo", pseudo) || pseudo.equals(session.getAttribute("pseudo"))) {
-						if(!dao.isColloneExiste("email", mail) || mail.equals(session.getAttribute("mail"))) {						
+					if(!dao.isPseudoExiste(pseudo) || pseudo.equals(session.getAttribute("pseudo"))) {
+						if(!dao.isEmailExiste(mail) || mail.equals(session.getAttribute("mail"))) {						
 							if((request.getParameter("motDePasse2") != null && !request.getParameter("motDePasse2").isEmpty()) || (request.getParameter("motDePasse3") != null && !request.getParameter("motDePasse3").isEmpty())) {
 								if(request.getParameter("motDePasse2").equals(request.getParameter("motDePasse3"))) {
 									

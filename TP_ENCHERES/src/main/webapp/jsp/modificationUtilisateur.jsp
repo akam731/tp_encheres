@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI - Ecnhères | Inscription</title>
     <link href="css/modifUtilisateur.css" rel="stylesheet">
-    <link href="css/modifUtilisateurResponsive.css" rel="stylesheet">
+   <!-- <link href="css/modifUtilisateurResponsive.css" rel="stylesheet">-->
 </head>
 <body>
     <h2><a href="acceuil"> ENI - Enchères </a></h2>
