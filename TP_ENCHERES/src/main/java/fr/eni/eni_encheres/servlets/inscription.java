@@ -52,7 +52,7 @@ public class inscription extends HttpServlet {
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 				
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					
@@ -127,8 +127,8 @@ public class inscription extends HttpServlet {
 			EniEnchereManager exist = new EniEnchereManager();
 			
 			try {
-				if(!exist.isColloneExiste("pseudo", pseudo)) {
-					if(!exist.isColloneExiste("email", mail)) {	
+				if(!exist.isPseudoExiste(pseudo)) {
+					if(!exist.isEmailExiste(mail)) {	
 						if(codePostal.length() < 10) {	
 							if(motDePasse.equals(motDePasse2)) {
 								

@@ -16,12 +16,15 @@ public class Enchere {
 	/* ********* *
 	 * ATTRIBUTS *
 	 * ********* */
+	private int no_Utilisateur;
+	private int no_Article;
 	private int noEnchere;
 	private int montantEnchere;
 	
 	private Date dateEnchere;
 	private Utilisateur noUtilisateur;
 	private ArticleVendu noArticle;
+
 	
 	/* ************* *
 	 * CONSTRUCTEURS *
@@ -39,9 +42,33 @@ public class Enchere {
 		this.noArticle 		= noArticle;
 	}
 
+
+	public Enchere(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
+		super();
+		this.no_Utilisateur 	= noUtilisateur;
+		this.no_Article 		= noArticle;
+		this.dateEnchere 	= dateEnchere;
+		this.montantEnchere = montantEnchere;
+	}
 	/* ***************** *
 	 * GETTERS / SETTERS *
 	 * ***************** */
+	
+	public int getNo_Utilisateur() {
+		return no_Utilisateur;
+	}
+	public void setNo_Utilisateur(int no_Utilisateur) {
+		this.no_Utilisateur = no_Utilisateur;
+	}
+
+	public int getNo_Article() {
+		return no_Article;
+	}
+	public void setNo_Article(int no_Article) {
+		this.no_Article = no_Article;
+	}
+	
+	
 	public int getNoEnchere() {
 		return noEnchere;
 	}

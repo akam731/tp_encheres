@@ -53,7 +53,7 @@ public class modificationUtilisateur extends HttpServlet {
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 				
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					

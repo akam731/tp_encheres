@@ -19,9 +19,9 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 	private final String INSERT_ARTICLEVENDUS="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) " 
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String SELECT_ARTICLEVENDUS="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_vente, prix_initial, no_utilisateur, no_categorie FROM ARTICLES_VENDUS";
-	private static final String SELECT_ARTICLEVENDUS_BY_ID="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLE_VENDUS WHERE no_article=?";
-	private static final String UPDATE_ARTICLEVENDUS="UPDATE ARTICLE_VENDU SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=? WHERE no_article=?";
-	private static final String DELETE_ARTICLEVENDUS="DELETE FROM ARTICLE_VENDU WHERE no_article=?";
+	private static final String SELECT_ARTICLEVENDUS_BY_ID="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article=?";
+	private static final String UPDATE_ARTICLEVENDUS="UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?,no_utilisateur=?, no_categorie=? WHERE no_article=?";
+	private static final String DELETE_ARTICLEVENDUS="DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
 	private static final String UPDATE_ARTICLE_DELETED_USER = "UPDATE ARTICLES_VENDUS SET no_utilisateur = null WHERE no_utilisateur = ?";
 
 	public void updateArticleDeteletedUtilisateur(int userId) throws BusinessException{
@@ -139,7 +139,7 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 					art = new ArticleVendu
 						( 
 							rs.getInt("no_article"), 
-							rs.getString( "nomArticle" ), 
+							rs.getString( "nom_article" ), 
 							rs.getString( "description" ), 
 							rs.getDate("date_debut_encheres"), 
 							rs.getDate("date_fin_encheres"), 
@@ -186,16 +186,17 @@ public class ArticleVenduJDBCImpl implements ArticleVenduDAO {
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement ps = cnx.prepareStatement(UPDATE_ARTICLEVENDUS);
 			)
-		{	
-			ps.setInt(1,articleVendu.getNoArticle());
-			ps.setString(2, articleVendu.getNomArticle()); 
-			ps.setString(3,articleVendu.getDescription()); 
-			ps.setDate(4,(Date) articleVendu.getDateDebutEncheres()); 
-			ps.setDate(5,(Date) articleVendu.getDateFinEncheres()); 
-			ps.setInt(6,articleVendu.getPrixVente()); 
-			ps.setInt(7,articleVendu.getMiseAPrix()); 
-			ps.setInt(8,articleVendu.getNoUtilisateur());
-			ps.setInt(9,articleVendu.getNoCategorie());
+		{	 
+				
+			ps.setString(1, articleVendu.getNomArticle()); 
+			ps.setString(2,articleVendu.getDescription()); 
+			ps.setDate(3,(Date) articleVendu.getDateDebutEncheres()); 
+			ps.setDate(4,(Date) articleVendu.getDateFinEncheres()); 
+			ps.setInt(5,articleVendu.getMiseAPrix());
+			ps.setInt(6,articleVendu.getPrixVente());  
+			ps.setInt(7,articleVendu.getNoUtilisateur());
+			ps.setInt(8,articleVendu.getNoCategorie());
+			ps.setInt(9,articleVendu.getNoArticle());
 			ps.executeUpdate();
 		} 
 		catch (SQLException e) 

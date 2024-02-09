@@ -81,7 +81,7 @@
         .categories select{
         	display: inline-block;
         	width: 300px;
-        	height: 25px;
+        	height: 45px;
         }
         .rechercher_bouton{
         	cursor: pointer;

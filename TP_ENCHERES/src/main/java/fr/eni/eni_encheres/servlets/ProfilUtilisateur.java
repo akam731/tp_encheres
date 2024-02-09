@@ -49,7 +49,7 @@ HttpSession session = request.getSession();
 			EniEnchereManager user = new EniEnchereManager();
 			try {
 				
-				Utilisateur utilisateur = user.getUserBy("pseudo", userPseudo);
+				Utilisateur utilisateur = user.getUserByPseudo(userPseudo);
 				
 				if(userMdp.equals(utilisateur.getMotDePasse())) {
 					
@@ -85,7 +85,7 @@ HttpSession session = request.getSession();
 	        Utilisateur utilisateur = new Utilisateur();
 			try {
 				
-				utilisateur = user.getUserBy("pseudo", targetUsername);
+				utilisateur = user.getUserByPseudo(targetUsername);
 				
 			}catch (BusinessException e) {
                 e.printStackTrace();

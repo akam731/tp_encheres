@@ -35,6 +35,14 @@
 			margin: 20px auto 0 auto;
 		}
 
+		img{
+			margin: 20px 0 0 20px;
+			object-fit: cover;
+			height: auto;
+			width: 400px;
+			height: 400px;
+			position: absolute;
+		}
 		label {
 			display: inline-block;
 			margin-bottom: 5px;
@@ -110,6 +118,10 @@
 			width: 90px;
 		}
 
+		.submits{
+			display: flex;
+		}
+
 		#enregistrer{
 			cursor: pointer;
 			margin: 20px 0 0 0;
@@ -126,13 +138,18 @@
 		}
 
 		#annuler{
+			display: inline-block;
 			cursor: pointer;
-			margin: 20px 0 0 30px;
-			height: 50px;
+			margin: 20px 0 0 20px;
+			text-align: center;
+			padding: 15px 0 0 0;
+			height: 32px;
 			width: 100px;
 			border: 1px solid #D70A0A;
 			background-color: #D70A0A;
 			color: #fff;
+			text-decoration: none;
+			font-size: 13px;
 		}
 
 		#annuler:hover{
