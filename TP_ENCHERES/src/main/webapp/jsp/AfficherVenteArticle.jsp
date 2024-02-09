@@ -5,6 +5,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/venteArticle.css">
+	<link rel="stylesheet" type="text/css" href="css/venteArticleResponsive.css">
 	<title>ENI - Enchères | Mettre en vente</title>
 </head>
 <body>

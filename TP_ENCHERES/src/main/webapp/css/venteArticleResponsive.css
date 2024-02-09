@@ -1,0 +1,90 @@
+@charset "UTF-8";
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Titre */
+h2 {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Formulaires */
+form {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Fichier d'upload */
+.input[type="file"] {
+    display: none;
+}
+
+.label_img {
+    display: inline-block;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Boutons */
+.submits {
+    text-align: center;
+}
+
+input[type="submit"],
+a.button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a.button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Responsive */
+@media only screen and (max-width: 600px) {
+    /* Pour les petits appareils */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea {
+        width: 100%;
+    }
+}

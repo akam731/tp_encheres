@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Liste des Enchères connecté</title>
+<link href="css/listeEnchereConnecteResponsive.css" rel="stylesheet">
 </head>
 <body>
 	<h2>Enchères Actives</h2>
